@@ -93,3 +93,25 @@ void RenderSystem(Entity *entities, int entityCount)
     }
 }
 ```
+
+# Automated Testing
+
+To ensure the reliability and correctness of the game, we use automated testing. The following tools and practices are used:
+
+1. **Unit Testing**:
+    - We use [CUnit](http://cunit.sourceforge.net/) to write and run unit tests.
+    - Unit tests are written for individual components and systems to verify their functionality.
+
+2. **Continuous Integration (CI)**:
+    - We use a CI service like [GitHub Actions](https://github.com/features/actions) to automatically run tests on every push and pull request.
+    - The CI pipeline is configured to compile the code, run unit tests, and report the results.
+
+3. **Code Coverage**:
+    - We use tools like [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) to measure code coverage.
+    - Code coverage reports help us identify untested parts of the codebase and improve test coverage.
+
+4. **Static Analysis**:
+    - We use static analysis tools like [Cppcheck](http://cppcheck.sourceforge.net/) to detect potential issues in the code.
+    - Static analysis is integrated into the CI pipeline to ensure code quality.
+
+By following these practices, we aim to maintain a high level of code quality and ensure that the game behaves as expected.
