@@ -12,6 +12,7 @@
 1. **Preparation Phase**:
     - **Unit Placement**: The player places their units on the battlefield. Artillery is automatically placed based on the number of units.
     - **Strategic Planning**: The player can review the battlefield and plan their moves.
+    - **Mouse Input**: Use the mouse to drag units to positions on the placement grid. Units can be repositioned after being placed.
 
 2. **Battle Phase**:
     - **Turn Order**: The player and the enemy take turns acting. Each unit gets one action per turn.
@@ -20,15 +21,18 @@
         - **Counter-Attack**: A unit that is attacked by an enemy and does not die automatically performs a counter-attack.
         - **Move**: A unit can move to a nearby position (up, down, left, right).
     - **Damage Calculation**: Damage is calculated based on the attacker's attack value minus the defender's defense value.
+    - **Mouse Input**: Select a unit with the mouse to display movement options. Choose a direction to move or select another unit. You can also click "Skip Turn" at any time.
 
 3. **Result Phase**:
     - **End of Battle**: The battle ends when all units on one side are defeated or if a unit reaches the other side (which results in an automatic win for that side).
     - **Result**: Display the result of the battle (win, loss, or draw).
     - **Rewards**: The player receives rewards based on the outcome, such as resources or experience points.
+    - **Mouse Input**: Use the mouse to navigate menu options.
 
 4. **Post-Battle Phase**:
     - **Recovery**: The player can recover their units and prepare for the next battle.
     - **Upgrades**: The player can upgrade their units or purchase new units based on the rewards received.
+    - **Mouse Input**: Use the mouse to navigate menu options.
 
 ## Graphics and UI
 

@@ -40,6 +40,25 @@ We use [Raylib](https://github.com/raysan5/raylib) as the underlying framework f
 
 For a detailed description of the phases of the game, see the "Phases of the Game" section in [README.md](README.md#phases-of-the-game).
 
+## Mouse Input Handling
+
+Mouse input is handled differently depending on the phase of the game. The `input_system` is responsible for capturing mouse events and updating the game state accordingly.
+
+1. **Preparation Phase**:
+    - **Mouse Input**: Use the mouse to drag units to positions on the placement grid. Units can be repositioned after being placed.
+    - The `input_system` captures drag-and-drop events and updates the position components of the units.
+
+2. **Battle Phase**:
+    - **Mouse Input**: Select a unit with the mouse to display movement options. Choose a direction to move or select another unit. You can also click "Skip Turn" at any time.
+
+3. **Result Phase**:
+    - **Mouse Input**: Use the mouse to navigate menu options.
+    - The `input_system` captures click events to navigate through the result menus.
+
+4. **Post-Battle Phase**:
+    - **Mouse Input**: Use the mouse to navigate menu options.
+    - The `input_system` captures click events to navigate through the post-battle menus.
+
 ## Example Components and Systems
 
 ### Position Component
