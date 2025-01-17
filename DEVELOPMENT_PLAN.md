@@ -41,3 +41,25 @@
 2. **Use unit tests to ensure that the battle logic works correctly**:
     - Create unit tests for the different functions in the game.
     - Use a testing library like Unity or CMocka to write and run the tests.
+
+# Workflow
+
+To manage the development process, we will use GitHub Issues and GitHub Projects. The workflow is as follows:
+
+1. **GitHub Issues**:
+    - Create issues for each feature or task that needs to be implemented.
+    - Each issue should contain an overview of the feature or task, including any relevant details and acceptance criteria.
+
+2. **GitHub Projects**:
+    - Use GitHub Projects to organize and manage issues.
+    - The project board will have the following phases:
+        - **Backlog**: All issues that are not yet started.
+        - **In Progress**: All issues that have code being worked on.
+        - **In Review**: All issues that have a pull request submitted.
+        - **Done**: All closed issues and merged pull requests.
+
+3. **Workflow Steps**:
+    - **Backlog**: Add new issues to the Backlog phase.
+    - **In Progress**: Move issues to In Progress when work begins. Commit code changes to a new branch and reference the issue number in commit messages.
+    - **In Review**: When a feature is complete, submit a pull request and move the issue to In Review. The pull request should be reviewed by another team member.
+    - **Done**: Once the pull request is approved and merged, move the issue to Done and close it.
