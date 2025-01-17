@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/o92design/raylib_svea/?tab=readme-ov-file#svea-rike-2-clone
+    about: Read our documentation for more information.
+issue_template: feature.md
