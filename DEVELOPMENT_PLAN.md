@@ -4,17 +4,31 @@
 
 1. **Implement a basic game loop**:
     - Create a main file (`main.c`) that contains the game loop.
-    - Handle the phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
 
-2. **Create a simple battlefield and place units on it**:
+2. **Implement basic rendering**:
+    - Use Raylib to draw the battlefield grid and units.
+    - Display unit icons and health bars above each unit to indicate its current health.
+    - Render artillery units below the battlefield based on the player's artillery value.
+
+3. **Create a simple battlefield and place units on it**:
     - Implement a grid for the battlefield.
-    - Allow the player to place their units on the battlefield.
-    - Automatically place artillery based on the number of units.
+    - Allow the player to place their units on the first two rows of their side of the grid during the Preparation Phase.
+    - Automatically place artillery units below the battlefield based on the player's artillery value (e.g., a value of 100 gives 1 cannon, and a value of 200 gives 2 cannons).
 
-3. **Implement basic battle logic**:
+4. **Implement mouse input handling**:
+    - Preparation Phase: Use the mouse to drag units to positions on the placement grid. Units can be repositioned after being placed.
+    - Battle Phase: Select a unit with the mouse to display movement options. Choose a direction to move or select another unit. Allow the player to click "Skip Turn" at any time.
+    - Result Phase: Use the mouse to navigate menu options.
+    - Post-Battle Phase: Use the mouse to navigate menu options.
+
+5. **Handle the phases of the game**:
+    - Implement the phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
+
+6. **Implement basic battle logic**:
     - Create functions to handle attacks, counter-attacks, and movement.
     - Calculate damage based on the attacker's attack value minus the defender's defense value.
     - Handle the turn order between the player and the enemy.
+    - Implement victory conditions: if a unit reaches the other side of the battlefield, that side wins; if all infantry and cavalry units on one side are defeated, the other side wins.
 
 ## Extended Features
 
