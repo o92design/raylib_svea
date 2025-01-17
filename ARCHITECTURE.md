@@ -17,6 +17,7 @@ We use [Raylib](https://github.com/raysan5/raylib) as the underlying framework f
     - **health_component.h / health_component.c**: Contains data for an entity's health.
     - **attack_component.h / attack_component.c**: Contains data for an entity's attack value.
     - **render_component.h / render_component.c**: Contains data for an entity's sprite and animations.
+    - **grid_component.h / grid_component.c**: Contains data for the battlefield grid, including dimensions and unit positions.
 
 3. **systems/**:
     - **render_system.h / render_system.c**: Handles rendering of entities based on their components.
@@ -69,8 +70,8 @@ Mouse input is handled differently depending on the phase of the game. The `inpu
 #define POSITION_COMPONENT_H
 
 typedef struct {
-    float x;
-    float y;
+    int x;
+    int y;
 } PositionComponent;
 
 #endif // POSITION_COMPONENT_H
@@ -89,6 +90,20 @@ typedef struct {
 
 #endif // HEALTH_COMPONENT_H
 ```
+### Grid Component
+```c
+// filepath: include/components/grid_component.h
+#ifndef GRID_COMPONENT_H
+#define GRID_COMPONENT_H
+
+typedef struct {
+    int x;
+    int y;
+    int **unit_positions; // 2D array to store unit positions on the grid
+} GridComponent;
+
+#endif // GRID_COMPONENT_H
+```
 
 ### Render System
 ```c
@@ -96,8 +111,9 @@ typedef struct {
 #include "raylib.h"
 #include "components/position_component.h"
 #include "components/health_component.h"
+#include "components/grid_component.h"
 
-void RenderSystem(Entity *entities, int entityCount)
+void RenderSystem(Entity *entities, int entityCount, GridComponent *grid)
 {
     for (int i = 0; i < entityCount; i++)
     {
@@ -106,12 +122,17 @@ void RenderSystem(Entity *entities, int entityCount)
 
         if (position && health)
         {
-            DrawCircle(position->x, position->y, 20, RED);
-            DrawText(TextFormat("HP: %d", health->health), position->x - 20, position->y - 30, 10, BLACK);
+            // Calculate screen position based on grid position
+            float screenX = grid->x + position->x * GRID_CELL_WIDTH;
+            float screenY = grid->y + position->y * GRID_CELL_HEIGHT;
+
+            DrawCircle(screenX, screenY, 20, RED);
+            DrawText(TextFormat("HP: %d", health->health), screenX - 20, screenY - 30, 10, BLACK);
         }
     }
 }
 ```
+
 
 # Automated Testing
 
