@@ -17,7 +17,7 @@ DEBUG_OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/Debug/%.o)
 RELEASE_OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/Release/%.o)
 TEST_SRCS = $(wildcard $(TEST_SRC_DIR)/*.c)
 TEST_OBJS = $(TEST_SRCS:$(TEST_SRC_DIR)/%.c=$(OBJ_DIR)/Tests/%.o)
-TEST_OBJS += $(DEBUG_OBJS)  # Include debug objects in test build
+TEST_OBJS += $(filter-out $(OBJ_DIR)/Debug/main.o, $(DEBUG_OBJS))  # Include debug objects in test build, excluding main.o
 
 # Target executables
 DEBUG_TARGET = build/Debug/raylib_svea

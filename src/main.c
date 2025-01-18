@@ -3,9 +3,11 @@
 
 int main(void) {
     // Initialize the game
+    /** 
     if (initialize_game() != 0) {
         return -1; // Initialization failed
     }
+    /**/
 
     // Run the game loop
     if (run_game_loop() != 0) {
