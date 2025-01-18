@@ -6,7 +6,7 @@
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
 
-**Progress:** Open
+**Progress:** In Progress
 
 **Acceptance Criteria:**
 - [ ] Create an entity system to manage game entities.
