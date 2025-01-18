@@ -83,3 +83,7 @@ To manage the development process, we will use GitHub Issues and GitHub Projects
     - **Reviewing a Pull Request**: Another team member should review the pull request. The reviewer should check the code for correctness, style, and adherence to project guidelines.
     - **Merging a Pull Request**: Once the pull request is approved, it can be merged into the main branch. Use the "Squash and Merge" option to combine all commits from the feature branch into a single commit on the main branch. This helps keep the commit history clean and easy to follow.
     - **Closing the Issue**: After the pull request is merged, close the related issue and move it to the Done phase on the project board.
+
+6. **Test Driven Development**
+    - We will utilize a test driven approach when making this project.
+    - For more details on Test-Driven Development, see the [Automated Testing](ARCHITECTURE.md#automated-testing) section, point 2, in `ARCHITECTURE.md`.
