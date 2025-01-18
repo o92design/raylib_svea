@@ -36,7 +36,7 @@
 
 ## Graphics and UI
 
-. **Battlefield**:
+1. **Battlefield**:
     - **Grid**: Use a grid to represent the battlefield, with circles as graphical elements.
     - **Layout**: The battlefield consists of two sides: the player's side and the enemy's side. Between the two sides is a grid that is X wide and Y high.
     - **Unit Placement**: During the preparation phase, the player places their units on the first two rows of their side of the grid.
