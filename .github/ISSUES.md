@@ -64,7 +64,9 @@ This issue is to set up the basic rendering for the game using Raylib by display
 Implement a basic game loop that runs continuously until the game is exited.
 
 **Acceptance Criteria**
-- [ ] Create a main file (`main.c`) that contains the game loop.
+- [ ] Create a main file (`main.c`) that calls initialize and calls the game loop.
+- [ ] Create a game loop files (`game_initialize.h` and `game_initialize.c`) that contains the game loop
+- [ ] Create a game loop files (`game_loop.h` and `game_loop.c`) that contains the game loop
 - [ ] Ensure the game loop runs continuously until the game is exited.
 
 **Additional Context**
