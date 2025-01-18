@@ -77,3 +77,6 @@ To manage the development process, we will use GitHub Issues and GitHub Projects
     - **In Progress**: Move issues to In Progress when work begins. Commit code changes to a new branch and reference the issue number in commit messages.
     - **In Review**: When a feature is complete, submit a pull request and move the issue to In Review. The pull request should be reviewed by another team member.
     - **Done**: Once the pull request is approved and merged, move the issue to Done and close it.
+
+4. **Commit Messages**:
+    - Include the issue key in the commit message. For example: `[ #1 ] Project Structure - Changes made`.
