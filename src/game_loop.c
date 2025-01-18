@@ -1,24 +1,34 @@
 #include "game_loop.h"
+#include "game_render.h"
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "game_initialize.h"
+#include "systems/sprite_loader_system.h"
+
 // Function to run the game loop
 int run_game_loop(void) {
-    bool running = true;
+    size_t numberOfSprites = 1;
+    SpriteComponent spriteComponents[numberOfSprites];
 
-    while (running) {
-        // Placeholder for game logic
-        printf("Game loop running...\n");
+    // Load Sprite
+    spriteComponents[0] = load_sprite("res/img/viking.png");
 
-        // Placeholder for user input to exit the loop
-        char input;
-        printf("Press 'q' to quit: ");
-        scanf(" %c", &input);
-        if (input == 'q') {
-            running = false;
+    while (!WindowShouldClose()) {
+        // Update Game Logic here
+
+        render_game(spriteComponents, numberOfSprites);
+    }
+
+    // Unload Sprites
+    if (spriteComponents[0].sprite.id != 0) {
+        fprintf(stdout, "There are still sprites in the system, unload them before closing the game.\n");
+        
+        if (unload_sprites(spriteComponents, numberOfSprites) != 0) {
+            fprintf(stderr, "Error: Could not unload sprites.\n");
+            return -1; // Unloading sprites failed
         }
     }
 
-    printf("Game loop exited.\n");
     return 0; // Return 0 to indicate success
 }

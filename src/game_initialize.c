@@ -3,6 +3,8 @@
 #include "game_initialize.h"
 #include "raylib.h"
 
+#include "systems/sprite_loader_system.h"
+
 // Function to initialize the game
 int initialize_game(void) {
     // Initialize Raylib
@@ -18,7 +20,7 @@ int initialize_game(void) {
     return 0; // Return 0 to indicate success
 }
 
-int cleanup_game(void) {
+int cleanup_game() {
     if(!IsWindowReady()) {
         fprintf(stderr, "Error: Window is not initialized. Therefore couldn't cleanup properly\n");
         return -1;

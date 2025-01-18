@@ -5,13 +5,26 @@
 #include <stdio.h>
 
 // Function to render all entities
-void render_system(void) {
-    // Example rendering logic
-    // In a real implementation, you would iterate over all entities and render those with a TextureComponent
-    SpriteComponent exampleTextureComponent;
-    exampleTextureComponent.sprite = LoadTexture("res/img/viking.png");
+void render_system(SpriteComponent *spriteComponents, size_t count) {
+    for (int i = 0; i < count; i++) {
 
-    DrawTexture(exampleTextureComponent.sprite, 200, 200, WHITE);
+        if (spriteComponents[i].sprite.id == 0) {
+            fprintf(stderr, "Error: Invalid sprite component.\n");
+            continue;
+        }
 
-    UnloadTexture(exampleTextureComponent.sprite);
+        // Draw the texture at the center of the window
+        int windowWidth = GetScreenWidth();
+        int windowHeight = GetScreenHeight();
+        int textureWidth = spriteComponents[i].sprite.width;
+        int textureHeight = spriteComponents[i].sprite.height;
+        int posX = (windowWidth - textureWidth) / 2;
+        int posY = (windowHeight - textureHeight) / 2;
+
+        // Draw a rectangle with a background color behind the texture
+        DrawRectangle(posX, posY, textureWidth, textureHeight, RAYWHITE);
+
+        // Draw the texture
+        DrawTexture(spriteComponents[i].sprite, posX, posY, WHITE);
+    }
 }
