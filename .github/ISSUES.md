@@ -1,5 +1,18 @@
 # Issues for o92design/raylib_svea
 
+## [Set Up Test-Driven Development Environment](https://github.com/o92design/raylib_svea/issues/8)
+**Description**
+Set up the environment for test-driven development (TDD) by configuring the necessary tools and writing basic initial unit tests to ensure that the setup works.
+
+**Acceptance Criteria**
+- [ ] Install and configure a unit testing framework (e.g., CUnit).
+- [ ] Create a directory for tests (e.g., `tests/`).
+- [ ] Write basic initial unit tests to check that the setup works.
+- [ ] Integrate unit tests into the build process using the `Makefile`.
+
+**Additional Context**
+This issue is to set up the environment for test-driven development (TDD) to ensure that all new features and bug fixes are developed using TDD principles.
+
 ## [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description**
 Implement the basic entity and component management system to manage game entities and their components.
