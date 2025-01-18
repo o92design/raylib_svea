@@ -1,10 +1,15 @@
-# Ignore build artifacts
-/build/
-/*.o
+# Build artifacts
+build/
 
-# Ignore Visual Studio Code settings
+# Libraries
+lib/raylib-5.5/
+
+# VSCode settings
 .vscode/
 
-# Ignore system files
-.DS_Store
-Thumbs.db
+# Other
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
