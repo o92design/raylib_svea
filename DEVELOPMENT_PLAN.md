@@ -36,13 +36,10 @@
     - Implement more unit types (e.g., archers, spearmen).
     - Add more actions per turn (e.g., defend, special abilities).
 
-2. **Implement a grid for the battlefield with circles as graphical elements**:
-    - Use Raylib to draw the battlefield and units.
-    - Implement different types of terrain that affect unit movement and combat abilities.
+2. **Implement different types of terrain**:
+    - Use Raylib to draw different types of terrain.
 
 3. **Add graphics and sound**:
-    - Use icons to represent different unit types.
-    - Display a health bar above each unit to indicate its current health.
     - Add sound effects for attacks, damage, and special abilities.
     - Add background music for battles.
 
@@ -74,9 +71,15 @@ To manage the development process, we will use GitHub Issues and GitHub Projects
 
 3. **Workflow Steps**:
     - **Backlog**: Add new issues to the Backlog phase.
-    - **In Progress**: Move issues to In Progress when work begins. Commit code changes to a new branch and reference the issue number in commit messages.
+    - **In Progress**: Move issues to In Progress when work begins. Create a new branch for the issue using the naming convention `issue_number_issue_title` (e.g., `1_project_structure`). Commit code changes to this branch and reference the issue number in commit messages.
     - **In Review**: When a feature is complete, submit a pull request and move the issue to In Review. The pull request should be reviewed by another team member.
     - **Done**: Once the pull request is approved and merged, move the issue to Done and close it.
 
 4. **Commit Messages**:
-    - Include the issue key in the commit message. For example: `[ #1 ] Project Structure - Changes made`.
+    - Include the issue key in the commit message. For example: `[#1] Project Structure - Changes made`.
+
+5. **Merge and Pull Request Strategy**:
+    - **Creating a Pull Request**: When a feature or task is complete, create a pull request from the feature branch to the main branch. The pull request should include a description of the changes made and reference the related issue.
+    - **Reviewing a Pull Request**: Another team member should review the pull request. The reviewer should check the code for correctness, style, and adherence to project guidelines.
+    - **Merging a Pull Request**: Once the pull request is approved, it can be merged into the main branch. Use the "Squash and Merge" option to combine all commits from the feature branch into a single commit on the main branch. This helps keep the commit history clean and easy to follow.
+    - **Closing the Issue**: After the pull request is merged, close the related issue and move it to the Done phase on the project board.
