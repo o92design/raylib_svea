@@ -6,13 +6,13 @@
 **Description:**  
 Set up the environment for test-driven development (TDD) by configuring the necessary tools and writing initial tests.
 
-**Progress:** Open
+**Progress:** In Progress
 
 **Acceptance Criteria:**
-- [ ] Install and configure a unit testing framework (CUnit).
-- [ ] Create a directory for tests (e.g., `tests/`).
-- [ ] Write basic initial unit tests for checking that it works.
-- [ ] Integrate unit tests into the build process using the `Makefile`.
+- [x] Install and configure a unit testing framework (CUnit).
+- [x] Create a directory for tests (e.g., `tests/`).
+- [x] Write basic initial unit tests for checking that it works.
+- [x] Integrate unit tests into the build process using the `Makefile`.
 
 ---
 
