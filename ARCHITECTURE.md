@@ -34,8 +34,14 @@ We use [Raylib](https://github.com/raysan5/raylib) as the underlying framework f
     - Updates the game state based on user input and game rules.
     - Handles transitions between the different phases.
 
-5. **main.c**:
-    - Contains the main game loop and initializes the various components.
+5. **game_init.c / game_init.h**:
+    - Handles initialization of the various game components
+
+6. **game_loop.h / game_loop.c**:
+    - Contains the main game loop
+
+7. **main.c**:
+    - Starts the game and calls the initialization and game loop.
 
 ## Phases of the Game
 
