@@ -12,11 +12,12 @@ TEST_DIR = tests
 TEST_SRC_DIR = $(TEST_DIR)/src
 
 # Source and object files
-SRCS = $(wildcard $(SRC_DIR)/**/*.c)
+SRCS = $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/**/*.c))
 DEBUG_OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/Debug/%.o)
 RELEASE_OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/Release/%.o)
 TEST_SRCS = $(wildcard $(TEST_SRC_DIR)/*.c)
 TEST_OBJS = $(TEST_SRCS:$(TEST_SRC_DIR)/%.c=$(OBJ_DIR)/Tests/%.o)
+TEST_OBJS += $(DEBUG_OBJS)  # Include debug objects in test build
 
 # Target executables
 DEBUG_TARGET = build/Debug/raylib_svea
@@ -30,8 +31,9 @@ all: debug release
 debug: CFLAGS += -g
 debug: $(DEBUG_TARGET)
 
-$(DEBUG_TARGET): $(DEBUG_OBJS)
-	$(CC) $(DEBUG_OBJS) -o $@ $(LDFLAGS)
+$(DEBUG_TARGET): $(DEBUG_OBJS) $(OBJ_DIR)/Debug/main.o
+	@mkdir -p $(dir $@)
+	$(CC) $(DEBUG_OBJS) $(OBJ_DIR)/Debug/main.o -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/Debug/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -41,8 +43,9 @@ $(OBJ_DIR)/Debug/%.o: $(SRC_DIR)/%.c
 release: CFLAGS += -O2
 release: $(RELEASE_TARGET)
 
-$(RELEASE_TARGET): $(RELEASE_OBJS)
-	$(CC) $(RELEASE_OBJS) -o $@ $(LDFLAGS)
+$(RELEASE_TARGET): $(RELEASE_OBJS) $(OBJ_DIR)/Release/main.o
+	@mkdir -p $(dir $@)
+	$(CC) $(RELEASE_OBJS) $(OBJ_DIR)/Release/main.o -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/Release/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -52,6 +55,7 @@ $(OBJ_DIR)/Release/%.o: $(SRC_DIR)/%.c
 tests: $(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJS)
+	@mkdir -p $(dir $@)
 	$(CC) $(TEST_OBJS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR)/Tests/%.o: $(TEST_SRC_DIR)/%.c
