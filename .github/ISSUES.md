@@ -2,6 +2,18 @@
 
 ## Open Issues
 
+### [Implement Basic Rendering](https://github.com/o92design/raylib_svea/issues/3)
+**Description:**  
+Implement basic rendering using Raylib to display an image on the screen.
+
+**Progress:** In Progress
+
+**Acceptance Criteria:**
+- [ ] Use Raylib to initialize a window.
+- [ ] Load an image and display it on the screen.
+
+---
+
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
@@ -51,18 +63,6 @@ Implement the ability to transition between the different phases of the game (Pr
 - [ ] Implement the ability to transition from the Battle Phase to the Result Phase.
 - [ ] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
 - [ ] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
-
----
-
-### [Implement Basic Rendering](https://github.com/o92design/raylib_svea/issues/3)
-**Description:**  
-Implement basic rendering using Raylib to display an image on the screen.
-
-**Progress:** Open
-
-**Acceptance Criteria:**
-- [ ] Use Raylib to initialize a window.
-- [ ] Load an image and display it on the screen.
 
 ---
 

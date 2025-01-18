@@ -1,13 +1,17 @@
 # Compiler and linker
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
+CFLAGS = -Wall -Wextra -Iinclude -Ilib
 LDFLAGS = -Llib -lraylib -lcunit
+
+# Include all libraries in lib/ directory, excluding .md files
+LIBS = $(filter-out %.md, $(wildcard lib/*))
+LIB_INCLUDES = $(foreach lib, $(LIBS), -I$(lib)/include)
+LIB_LINKS = $(foreach lib, $(LIBS), -L$(lib)/lib -lraylib)
 
 # Directories
 SRC_DIR = src
 OBJ_DIR = build
 INCLUDE_DIR = include
-LIB_DIR = lib
 TEST_DIR = tests
 TEST_SRC_DIR = $(TEST_DIR)/src
 
@@ -28,24 +32,24 @@ TEST_TARGET = build/Tests/test_runner
 all: debug release
 
 # Debug build
-debug: CFLAGS += -g
+debug: CFLAGS += -g $(LIB_INCLUDES)
 debug: $(DEBUG_TARGET)
 
 $(DEBUG_TARGET): $(DEBUG_OBJS) $(OBJ_DIR)/Debug/main.o
 	@mkdir -p $(dir $@)
-	$(CC) $(DEBUG_OBJS) $(OBJ_DIR)/Debug/main.o -o $@ $(LDFLAGS)
+	$(CC) $(DEBUG_OBJS) $(OBJ_DIR)/Debug/main.o -o $@ $(LDFLAGS) $(LIB_LINKS)
 
 $(OBJ_DIR)/Debug/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Release build
-release: CFLAGS += -O2
+release: CFLAGS += -O2 $(LIB_INCLUDES)
 release: $(RELEASE_TARGET)
 
 $(RELEASE_TARGET): $(RELEASE_OBJS) $(OBJ_DIR)/Release/main.o
 	@mkdir -p $(dir $@)
-	$(CC) $(RELEASE_OBJS) $(OBJ_DIR)/Release/main.o -o $@ $(LDFLAGS)
+	$(CC) $(RELEASE_OBJS) $(OBJ_DIR)/Release/main.o -o $@ $(LDFLAGS) $(LIB_LINKS)
 
 $(OBJ_DIR)/Release/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
@@ -56,7 +60,7 @@ tests: $(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJS)
 	@mkdir -p $(dir $@)
-	$(CC) $(TEST_OBJS) -o $@ $(LDFLAGS)
+	$(CC) $(TEST_OBJS) -o $@ $(LDFLAGS) $(LIB_LINKS)
 
 $(OBJ_DIR)/Tests/%.o: $(TEST_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)

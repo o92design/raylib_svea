@@ -3,12 +3,9 @@
 #include "game_initialize.h"
 #include "game_loop.h"
 
-// Test function to verify game initialization
-void test_game_initialize(void) {
-    CU_ASSERT(initialize_game() == 0);
-}
-
 // Test function to verify game loop execution
 void test_game_loop(void) {
+    CU_ASSERT(initialize_game() == 0);
     CU_ASSERT(run_game_loop() == 0);
+    CU_ASSERT(cleanup_game() == 0);
 }
