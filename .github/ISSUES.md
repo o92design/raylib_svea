@@ -2,21 +2,6 @@
 
 ## Open Issues
 
-### [Implement Basic Game Loop](https://github.com/o92design/raylib_svea/issues/2)
-**Description:**  
-Implement a basic game loop that runs continuously until the game is exited.
-
-**Progress:** In Progress
-
-**Acceptance Criteria:**
-- [ ] Write unit tests to verify the game loop initialization and execution.
-- [ ] Create a main file (`main.c`) that contains the game loop.
-- [ ] Create game loop files (`game_initialize.h` and `game_initialize.c`) that contain the game loop.
-- [ ] Create game loop files (`game_loop.h` and `game_loop.c`) that contain the game loop.
-- [ ] Ensure the game loop runs continuously until the game is exited.
-
----
-
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
@@ -82,6 +67,21 @@ Implement basic rendering using Raylib to display an image on the screen.
 ---
 
 ## Closed Issues
+
+### [Implement Basic Game Loop](https://github.com/o92design/raylib_svea/issues/2)
+**Description:**  
+Implement a basic game loop that runs continuously until the game is exited.
+
+**Progress:** Closed (Completed)
+
+**Acceptance Criteria:**
+- [x] Write unit tests to verify the game loop initialization and execution.
+- [x] Create a main file (`main.c`) that contains the game loop.
+- [x] Create game loop files (`game_initialize.h` and `game_initialize.c`) that contain the game loop.
+- [x] Create game loop files (`game_loop.h` and `game_loop.c`) that contain the game loop.
+- [x] Ensure the game loop runs continuously until the game is exited.
+
+---
 
 ### [#8 Setup Test-Driven Development Environment](https://github.com/o92design/raylib_svea/pull/10)
 **Description:**  
