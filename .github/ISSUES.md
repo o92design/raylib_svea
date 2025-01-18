@@ -2,18 +2,6 @@
 
 ## Open Issues
 
-### [Implement Basic Rendering](https://github.com/o92design/raylib_svea/issues/3)
-**Description:**  
-Implement basic rendering using Raylib to display an image on the screen.
-
-**Progress:** In Progress
-
-**Acceptance Criteria:**
-- [ ] Use Raylib to initialize a window.
-- [ ] Load an image and display it on the screen.
-
----
-
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
@@ -68,6 +56,23 @@ Implement the ability to transition between the different phases of the game (Pr
 
 ## Closed Issues
 
+### [Implement Basic Rendering](https://github.com/o92design/raylib_svea/issues/3)
+**Description:**  
+Implement basic rendering using Raylib to display an image on the screen.
+
+**Progress:** Closed (Completed)
+
+**Acceptance Criteria:**
+- [x] Use Raylib to initialize a window.
+- [x] Load an image and display it on the screen.
+
+**Pull Request**  
+[#11 Implement Basic Rendering](https://github.com/o92design/raylib_svea/pull/11)  
+***Description***  
+This pull request includes several changes to the `Makefile`, the addition of new game-related source and header files, and updates to the test suite. The most important changes include updates to the `Makefile` to handle object files more efficiently, the addition of new game initialization and loop functions, and the restructuring and expansion of the test suite.
+
+---
+
 ### [Implement Basic Game Loop](https://github.com/o92design/raylib_svea/issues/2)
 **Description:**  
 Implement a basic game loop that runs continuously until the game is exited.
@@ -81,18 +86,10 @@ Implement a basic game loop that runs continuously until the game is exited.
 - [x] Create game loop files (`game_loop.h` and `game_loop.c`) that contain the game loop.
 - [x] Ensure the game loop runs continuously until the game is exited.
 
----
-
-### [#8 Setup Test-Driven Development Environment](https://github.com/o92design/raylib_svea/pull/10)
-**Description:**  
-This pull request introduces test-driven development (TDD) by integrating the CUnit framework into the project and setting up the necessary infrastructure for unit testing.
-
-**Progress:** Closed
-
-**Changes:**
-- Makefile: Updated to include the CUnit library, added targets for building and running tests, and organized test source and object files.
-- Documentation: Updated the progress status and marked the initial setup tasks as completed.
-- Example Test: Added an example test file demonstrating how to write and register tests using CUnit.
+**Pull Request:**  
+[#11 Implement Basic Game Loop](https://github.com/o92design/raylib_svea/pull/11)  
+***Description:***  
+This pull request includes several changes to the `Makefile`, the addition of new game-related source and header files, and updates to the test suite. The most important changes include updates to the `Makefile` to handle object files more efficiently, the addition of new game initialization and loop functions, and the restructuring and expansion of the test suite.
 
 ---
 
@@ -100,7 +97,7 @@ This pull request introduces test-driven development (TDD) by integrating the CU
 **Description:**  
 Set up the environment for test-driven development (TDD) by configuring the necessary tools and writing initial tests.
 
-**Progress:** Closed
+**Progress:** Closed (Completed)
 
 **Acceptance Criteria:**
 - [x] Install and configure a unit testing framework (CUnit).
@@ -108,17 +105,10 @@ Set up the environment for test-driven development (TDD) by configuring the nece
 - [x] Write basic initial unit tests for checking that it works.
 - [x] Integrate unit tests into the build process using the `Makefile`.
 
----
-
-### [#1 Project Structure](https://github.com/o92design/raylib_svea/pull/9)
-**Description:**  
-This pull request includes the addition of a comprehensive `Makefile` for building the project and documentation files for the directory structure.
-
-**Progress:** Closed
-
-**Changes:**
-- Added a new `Makefile` to manage the build process, including debug and release builds, and a clean target.
-- Added documentation for the `include`, `lib`, and `src` directories.
+**Pull request:**  
+[#10 Setup Test-Driven Development Environment](https://github.com/o92design/raylib_svea/pull/10)  
+***Description:***  
+This pull request introduces test-driven development (TDD) by integrating the CUnit framework into the project and setting up the necessary infrastructure for unit testing.
 
 ---
 
@@ -147,6 +137,11 @@ Create the initial project structure for the Svea Rike 2 Clone project.
   - `.vscode/launch.json`
   - `.vscode/settings.json`
   - `Makefile`
+
+**Pull Request:**  
+[#9 Project Structure](https://github.com/o92design/raylib_svea/pull/9)  
+***Description:***  
+This pull request includes the addition of a comprehensive `Makefile` for building the project and documentation files for the directory structure.
 
 ---
 
