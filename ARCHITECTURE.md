@@ -132,7 +132,58 @@ void RenderSystem(Entity *entities, int entityCount, GridComponent *grid)
     }
 }
 ```
+## Code Structure
 
+To maintain consistency and readability, follow these guidelines for code structure:
+
+1. **Struct Names**:
+    - Use `UpperCase` for typedef names.
+    - Example `typedef struct { ... } EntityComponent`
+
+2. **Variable Names**:
+    - Use `lowerCase` for variables.
+    - Example `EntityComponent entityComponent`
+
+3. **Function Names**:
+    - Use `lower_case` for function names.
+    - Example: `void render_system(Entity* p_entitiesPtr, int p_entity_count);`
+
+4. **Parameter Names**:
+    - Use `p_parameterName` for parameters.
+    - Use `* p_parameterNamePtr` for pointer parameters.
+    - Use `const p_parameterNameRef` for constant reference parameters.
+    - Example: `void move_entity(Entity *p_entityPtr, const PositionComponent *p_positionPtr);`
+
+5. **File Naming**:
+    - Use `snake_case` for file names.
+    - Example: `position_component.h`, `render_system.c`
+
+6. **Indentation and Spacing**:
+    - Use 4 spaces for indentation.
+    - Place a space between keywords and parentheses.
+    - Example: `if (condition) { ... }`
+
+7. **Comments**:
+    - Use `//` for single-line comments.
+    - Use `/* ... */` for multi-line comments.
+    - Place comments above the code they describe.
+    - Example:
+      ```c
+      // Initialize the game
+      void init_game(void) {
+          /*
+          A comment that stretches over 
+          several rows and used for detailed 
+          information about the code
+          */
+         // Code here
+      }
+      ```
+8. **TODOs**:
+    - Use //TODO(author, DD-MM-YYYY): reason
+    - Example:
+    ```c
+    // TODO(kioskars, 18-1-2025): refactor code for better use
 
 # Automated Testing
 
