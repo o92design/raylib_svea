@@ -2,20 +2,6 @@
 
 ## Open Issues
 
-### [Set Up Test-Driven Development Environment](https://github.com/o92design/raylib_svea/issues/8)
-**Description:**  
-Set up the environment for test-driven development (TDD) by configuring the necessary tools and writing initial tests.
-
-**Progress:** In Progress
-
-**Acceptance Criteria:**
-- [x] Install and configure a unit testing framework (CUnit).
-- [x] Create a directory for tests (e.g., `tests/`).
-- [x] Write basic initial unit tests for checking that it works.
-- [x] Integrate unit tests into the build process using the `Makefile`.
-
----
-
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
@@ -133,5 +119,43 @@ This pull request includes the addition of a comprehensive `Makefile` for buildi
 **Changes:**
 - Added a new `Makefile` to manage the build process, including debug and release builds, and a clean target.
 - Added documentation for the `include`, `lib`, and `src` directories.
+
+---
+
+### [Set Up Test-Driven Development Environment](https://github.com/o92design/raylib_svea/issues/8)
+**Description:**  
+Set up the environment for test-driven development (TDD) by configuring the necessary tools and writing initial tests.
+
+**Progress:** Closed (Completed)
+
+**Acceptance Criteria:**
+- [x] Install and configure a unit testing framework (CUnit).
+- [x] Create a directory for tests (e.g., `tests/`).
+- [x] Write basic initial unit tests for checking that it works.
+- [x] Integrate unit tests into the build process using the `Makefile`.
+
+---
+
+### [Set Up Test-Driven Development Environment](https://github.com/o92design/raylib_svea/issues/8)
+**Description:**  
+This pull request includes the addition of a comprehensive `Makefile` for building the project and documentation files for the directory structure.
+
+**Progress:** Closed
+
+**Changes:**
+This pull request introduces test-driven development (TDD) by integrating the CUnit framework into the project and setting up the necessary infrastructure for unit testing. The main changes include updates to the `Makefile`, documentation, and an example test file.
+
+### Integration of CUnit Framework:
+
+* **Makefile**: Updated to include the CUnit library, added targets for building and running tests, and organized test source and object files. [[1]](diffhunk://#diff-76ed074a9305c04054cdebb9e9aad2d818052b07091de1f20cad0bbac34ffb52L4-R24) [[2]](diffhunk://#diff-76ed074a9305c04054cdebb9e9aad2d818052b07091de1f20cad0bbac34ffb52R51-R73)
+
+### Documentation:
+
+* **.github/ISSUES.md**: Updated the progress status and marked the initial setup tasks as completed.
+* **tests/TESTS.md**: Added a new file to document the structure, writing, and running of tests using the CUnit framework.
+
+### Example Test:
+
+* **tests/src/test_example.c**: Added an example test file demonstrating how to write and register tests using CUnit.
 
 ---
