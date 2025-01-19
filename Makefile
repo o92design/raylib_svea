@@ -1,6 +1,6 @@
 # Compiler and linker
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude -Ilib
+CFLAGS = -Wall -Wextra -g -Iinclude -Ilib
 LDFLAGS = -Llib -lraylib -lcunit
 
 # Include all libraries in lib/ directory, excluding .md files
@@ -56,6 +56,7 @@ $(OBJ_DIR)/Release/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Test build
+tests: CFLAGS += -g $(LIB_INCLUDES)
 tests: $(TEST_TARGET)
 
 $(TEST_TARGET): $(TEST_OBJS)

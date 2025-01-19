@@ -5,6 +5,7 @@
 
 #include "game_initialize.h"
 #include "systems/sprite_loader_system.h"
+#include "systems/entity_component_system.h"
 
 // Function to run the game loop
 int run_game_loop(void) {
@@ -13,6 +14,10 @@ int run_game_loop(void) {
 
     // Load Sprite
     spriteComponents[0] = load_sprite("res/img/viking.png");
+    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
+    COMPONENT_ID componentId = add_sprite_component(entityComponentManagerPtr, spriteComponents[0]);
+
+    destroy_component_manager(&entityComponentManagerPtr);
 
     while (!WindowShouldClose()) {
         // Update Game Logic here
