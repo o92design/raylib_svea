@@ -72,10 +72,10 @@ Implement the basic entity and component management system to manage game entiti
 **Progress:** Closed (Completed)
 
 **Acceptance Criteria:**
-- [ ] Create an entity system to manage game entities.
-- [ ] Ensure that entities can be created, updated, and destroyed.
-- [ ] Implement a basic component system to manage components.
-- [ ] Ensure that components can be added to and removed from entities.
+- [x] Create an entity system to manage game entities.
+- [x] Ensure that entities can be created, updated, and destroyed.
+- [x] Implement a basic component system to manage components.
+- [x] Ensure that components can be added to and removed from entities.
 
 **Pull Request:**
 [#14 Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/14)
