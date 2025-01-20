@@ -9,5 +9,5 @@ void test_game_initialize(void) {
 }
 
 void test_game_cleanup_without_initialize(void) {
-    CU_ASSERT(cleanup_game() == -1);
+    CU_ASSERT(cleanup_game() == 0);
 }

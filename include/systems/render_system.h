@@ -3,8 +3,8 @@
 
 #include <stddef.h>
 
-#include "components/sprite_component.h"
+#include "entity_component_manager.h"
 
-void render_system(SpriteComponent* spriteComponents, size_t count);
+void render_system(SpriteComponent* p_spriteComponentsPtr, PositionComponent* p_positionComponentsPtr);
 
 #endif // RENDER_SYSTEM_H

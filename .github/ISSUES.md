@@ -2,11 +2,34 @@
 
 ## Open Issues
 
+### [Refactor Memory Management System](https://github.com/o92design/raylib_svea/issues/13)
+**Description:**  
+Refactor the memory management system to be more generic and reusable across different parts of the game.
+
+**Progress:** Open
+
+**Acceptance Criteria:**
+- [ ] Create abstract memory allocation interface
+- [ ] Separate component-specific allocation from generic memory management
+- [ ] Implement default allocation strategy
+- [ ] Allow for custom allocation strategies
+- [ ] Update EntityComponentManager to use the new memory system
+- [ ] Add unit tests for different allocation strategies
+- [ ] Ensure backward compatibility with existing component system
+
+**Technical Notes:**
+- Create MemoryAllocator interface
+- Implement default malloc/free based allocator
+- Update MemoryManager to use allocation strategy
+- Keep current component pool functionality
+
+---
+
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
 Implement the basic entity and component management system to manage game entities and their components.
 
-**Progress:** Open
+**Progress:** In Progress
 
 **Acceptance Criteria:**
 - [ ] Create an entity system to manage game entities.

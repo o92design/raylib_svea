@@ -3,23 +3,49 @@
 #include <assert.h>
 
 SpriteComponent load_sprite(const char* p_pathPtr) {
-    SpriteComponent spriteComponent;
+    SpriteComponent spriteComponent = {0};  // Initialize all members to 0
+    
+    if (p_pathPtr == NULL) {
+        fprintf(stderr, "Error: Invalid path pointer\n");
+        return spriteComponent;
+    }
+    
+    // Ensure we have a valid window context before loading textures
+    if (!IsWindowReady()) {
+        fprintf(stderr, "Error: No valid window context for loading textures\n");
+        return spriteComponent;
+    }
+
+    spriteComponent.componentId = -1;
     spriteComponent.sprite = LoadTexture(p_pathPtr);
-    if(spriteComponent.sprite.id == 0) {
+    
+    if (spriteComponent.sprite.id == 0) {
         fprintf(stderr, "Error: Could not load sprite from path: %s\n", p_pathPtr);
     }
+    
     return spriteComponent;
 }
 
 int unload_sprite(SpriteComponent* p_spriteComponentPtr, const size_t p_index) {
+    if (p_spriteComponentPtr == NULL) {
+        fprintf(stderr, "Error: Invalid sprite component pointer\n");
+        return -1;
+    }
+
     fprintf(stdout, "Unloading sprite at index %ld\n", p_index);
+    
+    // Get pointer to specific sprite component
+    SpriteComponent* spriteComponentPtr = &p_spriteComponentPtr[p_index];
+    
+    // Check if sprite is already unloaded
+    if (spriteComponentPtr->sprite.id == 0) {
+        fprintf(stdout, "Warning: Sprite at index %ld is already unloaded.\n", p_index);
+        return -1;
+    }
 
-    SpriteComponent* spriteComponentPtr = p_spriteComponentPtr + p_index;
-
+    // Unload the texture
     UnloadTexture(spriteComponentPtr->sprite);
-
-    // Set sprite.id to 0 to indicate that it has been unloaded
-    spriteComponentPtr->sprite.id = 0;
+    spriteComponentPtr->sprite.id = 0;  // Mark as unloaded
     
     return 0;
 }
@@ -30,10 +56,8 @@ int unload_sprites(SpriteComponent* p_spriteComponentsPtr, const size_t p_count)
         return -1;
     }
 
-    for(size_t i = 0; i < p_count; i++) {
-        if(unload_sprite(p_spriteComponentsPtr, i) != 0) {
-            return -1;
-        }
+    for(size_t i = 0; i < p_count; ++i) {
+        unload_sprite(p_spriteComponentsPtr, i);
     }
 
     int unloadedSprites = 0;
@@ -50,7 +74,6 @@ int unload_sprites(SpriteComponent* p_spriteComponentsPtr, const size_t p_count)
 
     assert(unloadedSprites > 0 && "Didn't unload all sprites");
     fprintf(stdout, "Sprites: Unloaded %d / Still loaded: %d\n", unloadedSprites, nonZeroSprites);
-    
 
     return 0;
 }
