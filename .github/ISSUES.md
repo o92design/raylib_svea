@@ -25,20 +25,6 @@ Refactor the memory management system to be more generic and reusable across dif
 
 ---
 
-### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
-**Description:**  
-Implement the basic entity and component management system to manage game entities and their components.
-
-**Progress:** In Progress
-
-**Acceptance Criteria:**
-- [ ] Create an entity system to manage game entities.
-- [ ] Ensure that entities can be created, updated, and destroyed.
-- [ ] Implement a basic component system to manage components.
-- [ ] Ensure that components can be added to and removed from entities.
-
----
-
 ### [Implement Mouse Input Handling for Preparation Phase](https://github.com/o92design/raylib_svea/issues/6)
 **Description:**  
 Implement mouse input handling for the Preparation Phase.
@@ -79,6 +65,25 @@ Implement the ability to transition between the different phases of the game (Pr
 
 ## Closed Issues
 
+### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
+**Description:**  
+Implement the basic entity and component management system to manage game entities and their components.
+
+**Progress:** Closed (Completed)
+
+**Acceptance Criteria:**
+- [ ] Create an entity system to manage game entities.
+- [ ] Ensure that entities can be created, updated, and destroyed.
+- [ ] Implement a basic component system to manage components.
+- [ ] Ensure that components can be added to and removed from entities.
+
+**Pull Request:**
+[#14 Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/14)
+***Description***
+This pull request includes significant changes to the memory management and entity-component systems to improve their functionality and flexibility. The most important changes include the introduction of a new memory management system, updates to the entity-component management, and modifications to the build process to support these changes.
+
+---
+
 ### [Implement Basic Rendering](https://github.com/o92design/raylib_svea/issues/3)
 **Description:**  
 Implement basic rendering using Raylib to display an image on the screen.
@@ -89,7 +94,7 @@ Implement basic rendering using Raylib to display an image on the screen.
 - [x] Use Raylib to initialize a window.
 - [x] Load an image and display it on the screen.
 
-**Pull Request**  
+**Pull Request:**  
 [#11 Implement Basic Rendering](https://github.com/o92design/raylib_svea/pull/11)  
 ***Description***  
 This pull request includes several changes to the `Makefile`, the addition of new game-related source and header files, and updates to the test suite. The most important changes include updates to the `Makefile` to handle object files more efficiently, the addition of new game initialization and loop functions, and the restructuring and expansion of the test suite.
