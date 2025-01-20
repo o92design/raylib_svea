@@ -1,8 +1,11 @@
 #ifndef COMPONENT_H
 #define COMPONENT_H
 
-#include <stddef.h>
+#include "id_types.h"
 
-typedef size_t COMPONENT_ID;
+typedef enum {
+    COMPONENT_TYPE_SPRITE,
+    COMPONENT_TYPE_POSITION
+} COMPONENT_TYPE;
 
 #endif // COMPONENT_H

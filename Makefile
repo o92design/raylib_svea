@@ -1,6 +1,6 @@
 # Compiler and linker
 CC = gcc
-CFLAGS = -Wall -Wextra -g -Iinclude -Ilib
+CFLAGS = -Wall -Wextra -g -Iinclude -Ilib -I$(TEST_DIR)
 LDFLAGS = -Llib -lraylib -lcunit
 
 # Include all libraries in lib/ directory, excluding .md files
@@ -14,6 +14,7 @@ OBJ_DIR = build
 INCLUDE_DIR = include
 TEST_DIR = tests
 TEST_SRC_DIR = $(TEST_DIR)/src
+TEST_INCLUDE_DIR = $(TEST_DIR)/include
 
 # Source and object files
 SRCS = $(filter-out $(SRC_DIR)/main.c, $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/**/*.c))

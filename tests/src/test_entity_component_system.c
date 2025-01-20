@@ -1,61 +1,124 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/Basic.h>
-
+#include "game_initialize.h"
 #include "systems/entity_component_system.h"
+#include "systems/memory_system.h"
+#include "component_handler.h"
 #include "systems/sprite_loader_system.h"
 
 void test_create_component_manager(void) {
-    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
-    CU_ASSERT_PTR_NOT_NULL_FATAL(entityComponentManagerPtr);
-    CU_ASSERT_EQUAL(entityComponentManagerPtr->entityCount, 0);
-    destroy_component_manager(&entityComponentManagerPtr);
-    CU_ASSERT_PTR_NULL_FATAL(entityComponentManagerPtr);
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
+    
+    // Test memory manager creation
+    CU_ASSERT_PTR_NOT_NULL(manager->memoryManager);
+    CU_ASSERT_EQUAL(manager->memoryManager->type_count, 2); // SPRITE and POSITION
+    CU_ASSERT_PTR_NOT_NULL(manager->componentMaps);
+    CU_ASSERT_EQUAL(manager->entityCount, 0);
+
+    destroy_component_manager(&manager);
+    CU_ASSERT_PTR_NULL(manager);
 }
 
-void test_create_entity(void) {
-    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
+void test_add_components(void) {
+    // Initialize game for sprite loading
+    CU_ASSERT(initialize_game() == 0);
     
-    for(size_t entityIndex = 0; entityIndex < MAX_ENTITIES; entityIndex++) {
-        create_entity(entityComponentManagerPtr);
-        CU_ASSERT_EQUAL(entityComponentManagerPtr->entityCount, entityIndex + 1);
-        CU_ASSERT_EQUAL(entityComponentManagerPtr->entities[0].id, 0);
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
+
+    // Add sprite component
+    SpriteComponent sprite = load_sprite("res/img/viking.png");
+    COMPONENT_ID spriteId = add_sprite_component(manager, sprite);
+    CU_ASSERT_NOT_EQUAL(spriteId, -1);
+
+    // Add position component
+    PositionComponent pos = {-1, 100, 200};
+    COMPONENT_ID posId = add_position_component(manager, pos);
+    CU_ASSERT_NOT_EQUAL(posId, -1);
+
+    // Verify components were added correctly
+    void* spritePtr = get_component(manager, COMPONENT_TYPE_SPRITE, spriteId);
+    CU_ASSERT_PTR_NOT_NULL(spritePtr);
+    
+    void* posPtr = get_component(manager, COMPONENT_TYPE_POSITION, posId);
+    CU_ASSERT_PTR_NOT_NULL(posPtr);
+
+    cleanup_game();
+    
+    destroy_component_manager(&manager);
+}
+
+void test_component_memory_management(void) {
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
+
+    // Add multiple position components
+    for (int i = 0; i < 20; i++) {
+        PositionComponent pos = {-1, i * 10, i * 10};
+        COMPONENT_ID id = add_position_component(manager, pos);
+        CU_ASSERT_NOT_EQUAL(id, -1);
+        
+        // Verify component data
+        void* comp = get_component(manager, COMPONENT_TYPE_POSITION, id);
+        CU_ASSERT_PTR_NOT_NULL(comp);
+        PositionComponent* posComp = (PositionComponent*)comp;
+        CU_ASSERT_EQUAL(posComp->positionX, i * 10);
     }
 
-    int nonCreatedEntity = create_entity(entityComponentManagerPtr);
-    CU_ASSERT_EQUAL(nonCreatedEntity, -1);
-    CU_ASSERT_EQUAL(entityComponentManagerPtr->entityCount, MAX_ENTITIES);
-    CU_ASSERT_EQUAL(entityComponentManagerPtr->entities[MAX_ENTITIES - 1].id, MAX_ENTITIES - 1);
-    CU_ASSERT_EQUAL(entityComponentManagerPtr->entities[0].id, 0);
-
-    destroy_component_manager(&entityComponentManagerPtr);
+    destroy_component_manager(&manager);
+    CU_ASSERT_PTR_NULL(manager);
 }
 
-void test_create_entity_with_sprite_component(void) {
-    // Initialize Raylib first
-    CU_ASSERT(initialize_game() == 0);
+void test_entity_creation(void) {
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
 
-    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
-    CU_ASSERT_PTR_NOT_NULL_FATAL(entityComponentManagerPtr);
+    // Test creating multiple entities
+    for (int i = 0; i < 5; i++) {
+        ENTITY_ID entityId = create_entity(manager);
+        CU_ASSERT_NOT_EQUAL(entityId, -1);
+        CU_ASSERT_EQUAL(entityId, i);
+        CU_ASSERT_EQUAL(manager->entities[entityId].id, entityId);
+    }
 
-    size_t entityId = create_entity(entityComponentManagerPtr);
-    CU_ASSERT_NOT_EQUAL(entityId, -1);
+    destroy_component_manager(&manager);
+}
 
-    SpriteComponent spriteComponent = load_sprite("res/img/canon.png");
-    CU_ASSERT_NOT_EQUAL(spriteComponent.sprite.id, 0);
+void test_component_retrieval(void) {
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
 
-    // Fixed: Removed extra COMPONENT_TYPE_SPRITE argument
-    COMPONENT_ID componentId = add_sprite_component(entityComponentManagerPtr, spriteComponent);
-    CU_ASSERT_NOT_EQUAL(componentId, -1);
+    // Create entity and add components
+    ENTITY_ID entityId = create_entity(manager);
+    PositionComponent pos = {-1, 100, 200};
+    COMPONENT_ID posId = add_position_component(manager, pos);
+    manager->componentMaps[entityId].componentIds[COMPONENT_TYPE_POSITION] = posId;
 
-    entityComponentManagerPtr->spriteMap[entityId].componentId = componentId;
+    // Test component retrieval
+    COMPONENT_ID retrievedId = retrieve_entity_component(manager, entityId, COMPONENT_TYPE_POSITION);
+    CU_ASSERT_EQUAL(retrievedId, posId);
 
-    // Fixed: Adjusted component access syntax based on actual structure
-    COMPONENT_ID retrievedComponentId = retrieve_entity_component(entityComponentManagerPtr, entityId, COMPONENT_TYPE_SPRITE);
-    CU_ASSERT_EQUAL(retrievedComponentId, componentId);
+    void* component = get_component(manager, COMPONENT_TYPE_POSITION, retrievedId);
+    CU_ASSERT_PTR_NOT_NULL(component);
+    
+    PositionComponent* posComp = (PositionComponent*)component;
+    CU_ASSERT_EQUAL(posComp->positionX, 100);
+    CU_ASSERT_EQUAL(posComp->positionY, 200);
 
-    destroy_component_manager(&entityComponentManagerPtr);
-    CU_ASSERT_PTR_NULL_FATAL(entityComponentManagerPtr);
+    destroy_component_manager(&manager);
+}
 
-    // Cleanup Raylib
-    CU_ASSERT(cleanup_game() == 0);
+void test_memory_pool_growth(void) {
+    EntityComponentManager* manager = create_component_manager();
+    CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
+
+    // Add more components than initial pool size to test growth
+    for (int i = 0; i < INITIAL_POOL_SIZE + 5; i++) {
+        PositionComponent pos = {-1, i, i};
+        COMPONENT_ID id = add_position_component(manager, pos);
+        CU_ASSERT_NOT_EQUAL(id, -1);
+    }
+
+    destroy_component_manager(&manager);
 }

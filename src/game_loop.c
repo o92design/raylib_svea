@@ -15,29 +15,26 @@ int run_game_loop(void) {
 
     // Load Sprite
     SpriteComponent spriteComponent = load_sprite("res/img/viking.png");
-    COMPONENT_ID componentId = add_sprite_component(entityComponentManagerPtr, spriteComponent);
-    entityComponentManagerPtr->spriteMap[entityId].componentId = componentId;
-    entityComponentManagerPtr->spriteMap[entityIdTwo].componentId = componentId;
+    COMPONENT_ID spriteId = add_sprite_component(entityComponentManagerPtr, spriteComponent);
+    entityComponentManagerPtr->componentMaps[entityId].componentIds[COMPONENT_TYPE_SPRITE] = spriteId;
 
     SpriteComponent spriteComponentTwo = load_sprite("res/img/canon.png");
-    COMPONENT_ID componentIdTwo = add_sprite_component(entityComponentManagerPtr, spriteComponentTwo);
-    entityComponentManagerPtr->spriteMap[entityIdTwo].componentId = componentIdTwo;
+    COMPONENT_ID spriteIdTwo = add_sprite_component(entityComponentManagerPtr, spriteComponentTwo);
+    entityComponentManagerPtr->componentMaps[entityIdTwo].componentIds[COMPONENT_TYPE_SPRITE] = spriteIdTwo;
 
     // Create Position Component
     PositionComponent positionComponent = {-1, 20, 200};
-    COMPONENT_ID positionComponentId = add_position_component(entityComponentManagerPtr, positionComponent);
-    entityComponentManagerPtr->positionMap[entityId].componentId = positionComponentId;
+    COMPONENT_ID posId = add_position_component(entityComponentManagerPtr, positionComponent);
+    entityComponentManagerPtr->componentMaps[entityId].componentIds[COMPONENT_TYPE_POSITION] = posId;
 
     PositionComponent positionComponentTwo = {-1, 0, 0};
-    COMPONENT_ID positionComponentIdTwo = add_position_component(entityComponentManagerPtr, positionComponentTwo);
-    entityComponentManagerPtr->positionMap[entityIdTwo].componentId = positionComponentIdTwo;
+    COMPONENT_ID posIdTwo = add_position_component(entityComponentManagerPtr, positionComponentTwo);
+    entityComponentManagerPtr->componentMaps[entityIdTwo].componentIds[COMPONENT_TYPE_POSITION] = posIdTwo;
 
     while (!WindowShouldClose()) {
-        // Update Game Logic here
-
         render_game(entityComponentManagerPtr);
     }
 
     destroy_component_manager(&entityComponentManagerPtr);
-    return 0; // Return 0 to indicate success
+    return 0;
 }
