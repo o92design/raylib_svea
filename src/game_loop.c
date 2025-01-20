@@ -9,31 +9,35 @@
 
 // Function to run the game loop
 int run_game_loop(void) {
-    size_t numberOfSprites = 1;
-    SpriteComponent spriteComponents[numberOfSprites];
+    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
+    size_t entityId = create_entity(entityComponentManagerPtr);
+    size_t entityIdTwo = create_entity(entityComponentManagerPtr);
 
     // Load Sprite
-    spriteComponents[0] = load_sprite("res/img/viking.png");
-    EntityComponentManager* entityComponentManagerPtr = create_component_manager();
-    COMPONENT_ID componentId = add_sprite_component(entityComponentManagerPtr, spriteComponents[0]);
+    SpriteComponent spriteComponent = load_sprite("res/img/viking.png");
+    COMPONENT_ID componentId = add_sprite_component(entityComponentManagerPtr, spriteComponent);
+    entityComponentManagerPtr->spriteMap[entityId].componentId = componentId;
+    entityComponentManagerPtr->spriteMap[entityIdTwo].componentId = componentId;
 
-    destroy_component_manager(&entityComponentManagerPtr);
+    SpriteComponent spriteComponentTwo = load_sprite("res/img/canon.png");
+    COMPONENT_ID componentIdTwo = add_sprite_component(entityComponentManagerPtr, spriteComponentTwo);
+    entityComponentManagerPtr->spriteMap[entityIdTwo].componentId = componentIdTwo;
+
+    // Create Position Component
+    PositionComponent positionComponent = {-1, 20, 200};
+    COMPONENT_ID positionComponentId = add_position_component(entityComponentManagerPtr, positionComponent);
+    entityComponentManagerPtr->positionMap[entityId].componentId = positionComponentId;
+
+    PositionComponent positionComponentTwo = {-1, 0, 0};
+    COMPONENT_ID positionComponentIdTwo = add_position_component(entityComponentManagerPtr, positionComponentTwo);
+    entityComponentManagerPtr->positionMap[entityIdTwo].componentId = positionComponentIdTwo;
 
     while (!WindowShouldClose()) {
         // Update Game Logic here
 
-        render_game(spriteComponents, numberOfSprites);
+        render_game(entityComponentManagerPtr);
     }
 
-    // Unload Sprites
-    if (spriteComponents[0].sprite.id != 0) {
-        fprintf(stdout, "There are still sprites in the system, unload them before closing the game.\n");
-        
-        if (unload_sprites(spriteComponents, numberOfSprites) != 0) {
-            fprintf(stderr, "Error: Could not unload sprites.\n");
-            return -1; // Unloading sprites failed
-        }
-    }
-
+    destroy_component_manager(&entityComponentManagerPtr);
     return 0; // Return 0 to indicate success
 }

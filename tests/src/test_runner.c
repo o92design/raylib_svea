@@ -38,11 +38,10 @@ int main() {
     CU_add_test(component_system_suite, "Test Create Component Manager", test_create_component_manager);
     CU_add_test(component_system_suite, "Test Create Entity", test_create_entity);
     
-    //TODO(kioskars, 19/1-25): Test doesn't work when loading in the image, need investigation since other tests work -.-
-    //CU_add_test(component_system_suite, "Test Create Entity With Sprite Component", test_create_entity_with_sprite_component);
+    CU_add_test(component_system_suite, "Test Create Entity With Sprite Component", test_create_entity_with_sprite_component);
 
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
-    CU_cleanup_registry();
+    
     return 0;
 }

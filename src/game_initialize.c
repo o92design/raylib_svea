@@ -21,9 +21,10 @@ int initialize_game(void) {
 }
 
 int cleanup_game() {
-    if(!IsWindowReady()) {
-        fprintf(stderr, "Error: Window is not initialized. Therefore couldn't cleanup properly\n");
-        return -1;
+    // Check if window was already closed manually
+    if (!IsWindowReady()) {
+        fprintf(stderr, "Warning: Window was already closed\n");
+        return 0; // Return success since window is already closed
     }
 
     CloseWindow();

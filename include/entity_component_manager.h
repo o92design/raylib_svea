@@ -8,6 +8,12 @@
 
 #define MAX_ENTITIES 100
 
+typedef enum {
+    COMPONENT_TYPE_SPRITE,
+    COMPONENT_TYPE_POSITION,
+    COMPONENT_COUNT
+} COMPONENT_TYPE;
+
 typedef struct {
     SpriteComponent* spriteComponents[3];
     PositionComponent* positionComponents[MAX_ENTITIES];
@@ -25,14 +31,5 @@ typedef struct {
     ComponentMap spriteMap[MAX_ENTITIES];
     ComponentMap positionMap[MAX_ENTITIES];
 } EntityComponentManager;
-
-
-/** EXAMPLE CODE FOR NOW
-render(EntityComponentManagerPtr, entityId) {
-    spriteId = EntityComponentManagerPtr->spriteMap[entityId].componentId;
-    positionId = EntityComponentManagerPtr->positionMap[entityId].componentId;
-    render_component(componentId, positionId);
-}
-/**/
 
 #endif // ENTITY_COMPONENT_MANAGER_H

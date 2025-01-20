@@ -19,7 +19,7 @@ void test_game_render(void) {
     CU_ASSERT(spriteComponents[0].sprite.id != 0);
 
     // Render the game (this is a placeholder, actual rendering tests would be more complex)
-    render_game(spriteComponents, numberOfSprites);
+    render_game(spriteComponents);
 
     // Cleanup
     unload_sprites(spriteComponents, numberOfSprites);

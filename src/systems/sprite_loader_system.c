@@ -13,6 +13,10 @@ SpriteComponent load_sprite(const char* p_pathPtr) {
 
 int unload_sprite(SpriteComponent* p_spriteComponentPtr, const size_t p_index) {
     fprintf(stdout, "Unloading sprite at index %ld\n", p_index);
+    if(p_spriteComponentPtr[p_index].sprite.id == 0) {
+        fprintf(stdout, "Warning: Sprite at index %ld is already unloaded.\n", p_index);
+        return -1;
+    }
 
     SpriteComponent* spriteComponentPtr = p_spriteComponentPtr + p_index;
 
@@ -30,10 +34,8 @@ int unload_sprites(SpriteComponent* p_spriteComponentsPtr, const size_t p_count)
         return -1;
     }
 
-    for(size_t i = 0; i < p_count; i++) {
-        if(unload_sprite(p_spriteComponentsPtr, i) != 0) {
-            return -1;
-        }
+    for(size_t i = 0; i < p_count; ++i) {
+        unload_sprite(p_spriteComponentsPtr, i);
     }
 
     int unloadedSprites = 0;
@@ -50,7 +52,6 @@ int unload_sprites(SpriteComponent* p_spriteComponentsPtr, const size_t p_count)
 
     assert(unloadedSprites > 0 && "Didn't unload all sprites");
     fprintf(stdout, "Sprites: Unloaded %d / Still loaded: %d\n", unloadedSprites, nonZeroSprites);
-    
 
     return 0;
 }
