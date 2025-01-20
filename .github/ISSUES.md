@@ -2,6 +2,20 @@
 
 ## Open Issues
 
+### [Implement Phase Transitions](https://github.com/o92design/raylib_svea/issues/4)
+**Description:**  
+Implement the ability to transition between the different phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
+
+**Progress:** In Progress
+
+**Acceptance Criteria:**
+- [ ] Implement the ability to transition from the Preparation Phase to the Battle Phase.
+- [ ] Implement the ability to transition from the Battle Phase to the Result Phase.
+- [ ] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
+- [ ] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
+
+---
+
 ### [Refactor Memory Management System](https://github.com/o92design/raylib_svea/issues/13)
 **Description:**  
 Refactor the memory management system to be more generic and reusable across different parts of the game.
@@ -46,20 +60,6 @@ Implement basic mouse click handling to register clicks and determine what the p
 **Acceptance Criteria:**
 - [ ] Implement functionality to register mouse clicks.
 - [ ] Determine if the player is clicking on an entity or a specific area of the screen.
-
----
-
-### [Implement Phase Transitions](https://github.com/o92design/raylib_svea/issues/4)
-**Description:**  
-Implement the ability to transition between the different phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
-
-**Progress:** Open
-
-**Acceptance Criteria:**
-- [ ] Implement the ability to transition from the Preparation Phase to the Battle Phase.
-- [ ] Implement the ability to transition from the Battle Phase to the Result Phase.
-- [ ] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
-- [ ] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
 
 ---
 
