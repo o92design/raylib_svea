@@ -138,6 +138,79 @@ void RenderSystem(Entity *entities, int entityCount, GridComponent *grid)
     }
 }
 ```
+---
+
+# Memory Management System
+
+## Overview
+The memory management system consists of three main components:
+1. [`MemoryManager`](include/memory_manager.h) - Handles component memory pools
+2. [`memory_system`](src/systems/memory_system.c) - Core memory allocation functions
+3. [`component_handler`](src/systems/component_handler.c) - Component-specific memory operations
+
+## Memory Operations
+
+### Core Functions
+```c
+// Create and initialize memory pools
+MemoryManager* create_memory_manager(size_t initial_pool_count);
+
+// Allocate memory for a component
+void* allocate_component(MemoryManager* manager, COMPONENT_TYPE type);
+
+// Mark component memory as available
+void free_component(MemoryManager* manager, COMPONENT_TYPE type, void* component);
+
+// Clean up all memory pools
+void destroy_memory_manager(MemoryManager* manager);
+```
+
+### Memory Manager
+The [`MemoryManager`](include/memory_manager.h) structure manages component memory pools:
+```c
+typedef struct {
+    void** pools;           // Array of component type pools
+    size_t* pool_sizes;     // Size of each pool
+    size_t* element_sizes;  // Size of elements in each pool
+    size_t type_count;      // Number of component types
+} MemoryManager;
+```
+
+### Key Features
+
+-   Dynamic pool growth
+    -   Initial size: 16 components
+    -   Growth factor: 2x when full
+-   Type-safe component handling
+-   Automatic memory management
+-   Component pooling
+
+### Usage example
+```c
+// Initialize
+EntityComponentManager* manager = create_component_manager();
+
+// Add component
+SpriteComponent sprite = load_sprite("res/img/viking.png");
+COMPONENT_ID spriteId = add_sprite_component(manager, sprite);
+
+// Get component
+void* component = get_component(manager, COMPONENT_TYPE_SPRITE, spriteId);
+
+// Cleanup
+destroy_component_manager(&manager);
+```
+### Future Improvements
+
+See Issue #13 for planned enhancements:
+
+-   Abstract allocation interface
+-   Custom allocation strategies
+-   Component recycling
+-   Pool defragmentation
+
+---
+
 ## Code Structure
 
 To maintain consistency and readability, follow these guidelines for code structure:
