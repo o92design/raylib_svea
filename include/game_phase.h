@@ -1,0 +1,11 @@
+#ifndef GAME_PHASE_H
+#define GAME_PHASE_H
+
+typedef enum {
+    PHASE_PREPARATION,
+    PHASE_BATTLE,
+    PHASE_RESULT,
+    PHASE_POST_BATTLE
+} GAME_PHASE;
+
+#endif // GAME_PHASE_H
