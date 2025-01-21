@@ -2,20 +2,6 @@
 
 ## Open Issues
 
-### [Implement Phase Transitions](https://github.com/o92design/raylib_svea/issues/4)
-**Description:**  
-Implement the ability to transition between the different phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
-
-**Progress:** In Progress
-
-**Acceptance Criteria:**
-- [x] Implement the ability to transition from the Preparation Phase to the Battle Phase.
-- [x] Implement the ability to transition from the Battle Phase to the Result Phase.
-- [x] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
-- [x] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
-
----
-
 ### [Refactor Memory Management System](https://github.com/o92design/raylib_svea/issues/13)
 **Description:**  
 Refactor the memory management system to be more generic and reusable across different parts of the game.
@@ -64,6 +50,25 @@ Implement basic mouse click handling to register clicks and determine what the p
 ---
 
 ## Closed Issues
+
+### [Implement Phase Transitions](https://github.com/o92design/raylib_svea/issues/4)
+**Description:**  
+Implement the ability to transition between the different phases of the game (Preparation Phase, Battle Phase, Result Phase, Post-Battle Phase).
+
+**Progress:** Closed (Completed)
+
+**Acceptance Criteria:**
+- [x] Implement the ability to transition from the Preparation Phase to the Battle Phase.
+- [x] Implement the ability to transition from the Battle Phase to the Result Phase.
+- [x] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
+- [x] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
+
+**Pull Requests:**
+[#15 Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/15)
+***Description***
+This pull request introduces a new feature for handling phase transitions in the game, along with corresponding updates to the documentation and tests. The most important changes include the addition of phase transition logic, updates to the game loop, and new tests to verify the functionality.
+
+---
 
 ### [Implement Entity and Component Management](https://github.com/o92design/raylib_svea/issues/7)
 **Description:**  
