@@ -17,4 +17,7 @@ void test_game_render(void);
 void test_add_components(void);
 void test_component_memory_management(void);
 
+// Game phase tests
+void test_phase_transitions(void);
+
 #endif // TEST_SUITES_H

@@ -7,6 +7,66 @@
 #include "systems/sprite_loader_system.h"
 #include "systems/entity_component_system.h"
 
+// Add to struct or global state
+static GAME_PHASE currentPhase = PHASE_PREPARATION;
+
+bool is_preparation_complete(void) {
+    fprintf(stdout, "Preparation complete\n");
+    return true;
+}
+
+bool is_battle_complete(void) {
+    fprintf(stdout, "Battle complete\n");
+    return true;
+}
+
+bool is_result_complete(void) {
+    fprintf(stdout, "Result complete\n");
+    return true;
+}
+
+bool is_post_battle_complete(void) {
+    fprintf(stdout, "Post battle complete\n");
+    return true;
+}
+
+void handle_phase_transition(void) {
+    switch(currentPhase) {
+        case PHASE_PREPARATION:
+            if (is_preparation_complete()) {
+                fprintf(stdout, "Switching to battle phase\n");
+                currentPhase = PHASE_BATTLE;
+            }
+            break;
+        case PHASE_BATTLE:
+            if (is_battle_complete()) {
+                fprintf(stdout, "Switching to result phase\n");
+                currentPhase = PHASE_RESULT;
+            }
+            break;
+        case PHASE_RESULT:
+            if (is_result_complete()) {
+                fprintf(stdout, "Switching to post battle phase\n");
+                currentPhase = PHASE_POST_BATTLE;
+            }
+            break;
+        case PHASE_POST_BATTLE:
+            if (is_post_battle_complete()) {
+                fprintf(stdout, "Switching to preparation phase\n");
+                currentPhase = PHASE_PREPARATION;
+            }
+            break;
+    }
+}
+
+GAME_PHASE get_current_phase(void) {
+    return currentPhase;
+}
+
+void switch_phase(GAME_PHASE p_phase) {
+    currentPhase = p_phase;
+}
+
 // Function to run the game loop
 int run_game_loop(void) {
     EntityComponentManager* entityComponentManagerPtr = create_component_manager();
@@ -31,8 +91,45 @@ int run_game_loop(void) {
     COMPONENT_ID posIdTwo = add_position_component(entityComponentManagerPtr, positionComponentTwo);
     entityComponentManagerPtr->componentMaps[entityIdTwo].componentIds[COMPONENT_TYPE_POSITION] = posIdTwo;
 
-    while (!WindowShouldClose()) {
-        render_game(entityComponentManagerPtr);
+    bool shouldClose = false;
+
+    while (!WindowShouldClose() && !shouldClose) {
+        handle_phase_transition();
+        
+        // Render based on current phase
+            switch(currentPhase) {
+        case PHASE_PREPARATION:
+            BeginDrawing();
+            ClearBackground(BLUE);
+            DrawText("Preparation Phase", 10, 10, 20, BLACK);
+            EndDrawing();
+            WaitTime(1);
+            break;
+        case PHASE_BATTLE:
+            BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawText("Battle Phase", 10, 10, 20, BLACK);
+            render_game(entityComponentManagerPtr);
+            EndDrawing();
+            WaitTime(1);
+            break;
+        case PHASE_RESULT:
+            BeginDrawing();
+            ClearBackground(PINK);
+            DrawText("Result Phase", 10, 10, 20, BLACK);
+            EndDrawing();
+            WaitTime(1);
+            break;
+        case PHASE_POST_BATTLE:
+            BeginDrawing();
+            ClearBackground(YELLOW);
+            DrawText("Post-Battle Phase", 10, 10, 20, BLACK);
+            EndDrawing();
+            WaitTime(1);
+            shouldClose = true;
+            break;
+    }
+        
     }
 
     destroy_component_manager(&entityComponentManagerPtr);
