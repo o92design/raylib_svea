@@ -83,3 +83,17 @@ ENTITY_ID create_entity(EntityComponentManager* p_componentManagerPtr) {
 
     return entityId;
 }
+
+bool is_entity_clicked(PositionComponent* p_positionComponent, int p_mouseX, int p_mouseY) {
+    // Assuming the entity is represented by a rectangle with a fixed width and height
+    int entityWidth = 50;  // Example width
+    int entityHeight = 50; // Example height
+
+    // Check if the mouse click is within the entity's bounds
+    if (p_mouseX >= p_positionComponent->positionX && p_mouseX <= p_positionComponent->positionX + entityWidth &&
+        p_mouseY >= p_positionComponent->positionY && p_mouseY <= p_positionComponent->positionY + entityHeight) {
+        return true;
+    }
+
+    return false;
+}

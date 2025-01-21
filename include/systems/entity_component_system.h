@@ -18,4 +18,6 @@ COMPONENT_ID retrieve_entity_component(EntityComponentManager* p_componentManage
                                      size_t p_entityId, 
                                      COMPONENT_TYPE p_type);
 
+bool is_entity_clicked(PositionComponent* p_positionComponent, int p_mouseX, int p_mouseY);
+
 #endif // ENTITY_COMPONENT_SYSTEM_H
