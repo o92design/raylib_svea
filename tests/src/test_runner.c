@@ -27,11 +27,13 @@ int main() {
     CU_pSuite game_phase_suite = CU_add_suite("Game Phase Suite", 0, 0);
     CU_add_test(game_phase_suite, "Test Phase Transitions", test_phase_transitions);
     
+    CU_pSuite clickable_component_suite = CU_add_suite("Clickable Component Suite", 0, 0);
+    CU_add_test(clickable_component_suite, "Test Clickable Component", test_clickable_component);
+
 /** 
     CU_pSuite game_loop_suite = CU_add_suite("Game Loop Suite", 0, 0);
     CU_add_test(game_loop_suite, "Test Game Loop Execution", test_game_loop);
 */    
-
 
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();

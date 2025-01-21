@@ -60,25 +60,3 @@ void remove_component(EntityComponentManager* p_manager,
 
     free_component(p_manager->memoryManager, p_type, component);
 }
-
-COMPONENT_ID add_clickable_component(EntityComponentManager* p_manager, 
-                                   ClickableComponent p_clickableComponent) {
-    return add_component(p_manager, 
-                        COMPONENT_TYPE_CLICKABLE, 
-                        &p_clickableComponent, 
-                        sizeof(ClickableComponent));
-}
-
-ClickableComponent* get_clickable_component(EntityComponentManager* p_manager,
-                                           COMPONENT_ID p_id) {
-    return (ClickableComponent*)get_component(p_manager, 
-                                             COMPONENT_TYPE_CLICKABLE, 
-                                             p_id);
-}
-
-void remove_clickable_component(EntityComponentManager* p_manager,
-                               COMPONENT_ID p_id) {
-    remove_component(p_manager, 
-                    COMPONENT_TYPE_CLICKABLE, 
-                    p_id);
-}
