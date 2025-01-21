@@ -12,4 +12,5 @@ runs:
           build-essential \
           libcunit1-dev \
           libgl1-mesa-dev \
-          libx11-dev
+          libx11-dev \
+          xvfb

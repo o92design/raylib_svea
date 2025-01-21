@@ -20,8 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: ./.github/actions/setup-dependencies
-    - name: Run tests
-      run: make ci-test
+    - name: Run tests with virtual display
+      run: xvfb-run --auto-servernum make ci-test
 
   lint:
     runs-on: ubuntu-latest
