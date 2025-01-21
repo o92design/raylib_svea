@@ -93,45 +93,93 @@ int run_game_loop(void) {
     COMPONENT_ID posIdTwo = add_position_component(entityComponentManagerPtr, positionComponentTwo);
     entityComponentManagerPtr->componentMaps[entityIdTwo].componentIds[COMPONENT_TYPE_POSITION] = posIdTwo;
 
+    // Create Clickable Component
+    ClickableComponent clickableComponent = {-1, true};
+    COMPONENT_ID clickableId = add_clickable_component(entityComponentManagerPtr, clickableComponent);
+    entityComponentManagerPtr->componentMaps[entityId].componentIds[COMPONENT_TYPE_CLICKABLE] = clickableId;
+
+    ClickableComponent clickableComponentTwo = {-1, false};
+    COMPONENT_ID clickableIdTwo = add_clickable_component(entityComponentManagerPtr, clickableComponentTwo);
+    entityComponentManagerPtr->componentMaps[entityIdTwo].componentIds[COMPONENT_TYPE_CLICKABLE] = clickableIdTwo;
+
     bool shouldClose = false;
 
+    bool shouldSwitch = true;
     while (!WindowShouldClose() && !shouldClose) {
-        handle_phase_transition();
+        if(shouldSwitch) handle_phase_transition();
         
         // Render based on current phase
-            switch(currentPhase) {
-        case PHASE_PREPARATION:
-            BeginDrawing();
-            ClearBackground(BLUE);
-            DrawText("Preparation Phase", 10, 10, 20, BLACK);
-            EndDrawing();
-            WaitTime(1);
-            break;
-        case PHASE_BATTLE:
-            BeginDrawing();
-            ClearBackground(RAYWHITE);
-            DrawText("Battle Phase", 10, 10, 20, BLACK);
-            render_game(entityComponentManagerPtr);
-            EndDrawing();
-            WaitTime(1);
-            break;
-        case PHASE_RESULT:
-            BeginDrawing();
-            ClearBackground(PINK);
-            DrawText("Result Phase", 10, 10, 20, BLACK);
-            EndDrawing();
-            WaitTime(1);
-            break;
-        case PHASE_POST_BATTLE:
-            BeginDrawing();
-            ClearBackground(YELLOW);
-            DrawText("Post-Battle Phase", 10, 10, 20, BLACK);
-            EndDrawing();
-            WaitTime(1);
-            shouldClose = true;
-            break;
-    }
-        
+        switch(currentPhase) {
+            case PHASE_PREPARATION:
+                BeginDrawing();
+                ClearBackground(BLUE);
+                DrawText("Preparation Phase", 10, 10, 20, BLACK);
+                EndDrawing();
+                WaitTime(1);
+                break;
+            case PHASE_BATTLE:
+                shouldSwitch = false;
+                BeginDrawing();
+                ClearBackground(RAYWHITE);
+                DrawText("Battle Phase", 10, 10, 20, BLACK);
+                render_game(entityComponentManagerPtr);
+                EndDrawing();
+                        // Register mouse clicks
+                if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+                    int mouseX = GetMouseX();
+                    int mouseY = GetMouseY();
+
+                    // Check if clicking on an entity
+                    for (size_t entityIndex = 0; entityIndex < entityComponentManagerPtr->entityCount; entityIndex++) {
+                        size_t entityId = entityComponentManagerPtr->entities[entityIndex].id;
+
+                        // Get component IDs
+                        COMPONENT_ID positionComponentId = retrieve_entity_component(entityComponentManagerPtr, entityId, COMPONENT_TYPE_POSITION);
+                        COMPONENT_ID clickableComponentId = retrieve_entity_component(entityComponentManagerPtr, entityId, COMPONENT_TYPE_CLICKABLE);
+
+                        // Get actual components using component handler
+                        PositionComponent* positionComponentPtr = get_component(entityComponentManagerPtr, COMPONENT_TYPE_POSITION, positionComponentId);
+                        ClickableComponent* clickableComponentPtr = get_component(entityComponentManagerPtr, COMPONENT_TYPE_CLICKABLE, clickableComponentId);
+
+                        if (positionComponentPtr && clickableComponentPtr && clickableComponentPtr->isClickable) {
+                            if (is_entity_clicked(positionComponentPtr, mouseX, mouseY)) {
+                                log_info("Entity %zu clicked\n", entityId);
+                            }
+                        }
+                    }
+
+                    // Check if clicking on a specific area of the screen
+                    int areaX = 100;  // Example area position
+                    int areaY = 100;  // Example area position
+                    int areaWidth = 200;  // Example area size
+                    int areaHeight = 200;  // Example area size
+
+                    log_info("MouseX: %d, MouseY: %d\n", mouseX, mouseY);
+
+                    if (mouseX >= areaX && mouseX <= areaX + areaWidth &&
+                        mouseY >= areaY && mouseY <= areaY + areaHeight) {
+                        log_info("Specific area clicked\n");
+                        shouldSwitch = true;
+                    }
+                }
+
+                break;
+            case PHASE_RESULT:
+                BeginDrawing();
+                ClearBackground(PINK);
+                DrawText("Result Phase", 10, 10, 20, BLACK);
+                EndDrawing();
+                WaitTime(1);
+                break;
+            case PHASE_POST_BATTLE:
+                BeginDrawing();
+                ClearBackground(YELLOW);
+                DrawText("Post-Battle Phase", 10, 10, 20, BLACK);
+                EndDrawing();
+                WaitTime(1);
+                shouldClose = true;
+                break;
+        }
     }
 
     destroy_component_manager(&entityComponentManagerPtr);

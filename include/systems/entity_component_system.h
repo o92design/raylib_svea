@@ -14,8 +14,14 @@ COMPONENT_ID add_sprite_component(EntityComponentManager* p_componentManagerPtr,
 COMPONENT_ID add_position_component(EntityComponentManager* p_componentManagerPtr, 
                                   PositionComponent p_positionComponent);
 
+COMPONENT_ID add_clickable_component(EntityComponentManager* p_componentManagerPtr, 
+                                   ClickableComponent p_clickableComponent);
+
 COMPONENT_ID retrieve_entity_component(EntityComponentManager* p_componentManagerPtr, 
                                      size_t p_entityId, 
                                      COMPONENT_TYPE p_type);
+
+
+bool is_entity_clicked(PositionComponent* p_positionComponent, int p_mouseX, int p_mouseY);
 
 #endif // ENTITY_COMPONENT_SYSTEM_H

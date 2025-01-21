@@ -5,12 +5,13 @@
 #include "entity.h"
 #include "components/sprite_component.h"
 #include "components/position_component.h"
+#include "components/clickable_component.h"
 #include "memory_manager.h"
 
 #define MAX_ENTITIES 100
 
 typedef struct {
-    COMPONENT_ID componentIds[2];  // Array to store different component types
+    COMPONENT_ID componentIds[3];  // Array to store different component types
 } ComponentMap;
 
 typedef struct {

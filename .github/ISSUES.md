@@ -41,11 +41,11 @@ Implement mouse input handling for the Preparation Phase.
 **Description:**  
 Implement basic mouse click handling to register clicks and determine what the player is clicking on.
 
-**Progress:** Open
+**Progress:** In Progress
 
 **Acceptance Criteria:**
-- [ ] Implement functionality to register mouse clicks.
-- [ ] Determine if the player is clicking on an entity or a specific area of the screen.
+- [x] Implement functionality to register mouse clicks.
+- [x] Determine if the player is clicking on an entity or a specific area of the screen.
 
 ---
 

@@ -10,7 +10,7 @@ EntityComponentManager* create_component_manager(void) {
         return NULL;
     }
 
-    manager->memoryManager = create_memory_manager(2); // SPRITE and POSITION types
+    manager->memoryManager = create_memory_manager(COMPONENT_TYPE_COUNT);
     if (!manager->memoryManager) {
         free(manager);
         return NULL;
@@ -67,6 +67,14 @@ COMPONENT_ID add_position_component(EntityComponentManager* p_componentManagerPt
                         sizeof(PositionComponent));
 }
 
+COMPONENT_ID add_clickable_component(EntityComponentManager* p_componentManagerPtr, 
+                                   ClickableComponent p_clickableComponent) {
+    return add_component(p_componentManagerPtr, 
+                        COMPONENT_TYPE_CLICKABLE, 
+                        &p_clickableComponent, 
+                        sizeof(ClickableComponent));
+}
+
 ENTITY_ID create_entity(EntityComponentManager* p_componentManagerPtr) {
     if (p_componentManagerPtr->entityCount >= MAX_ENTITIES) {
         return -1;
@@ -77,9 +85,23 @@ ENTITY_ID create_entity(EntityComponentManager* p_componentManagerPtr) {
     p_componentManagerPtr->entityCount++;
 
     // Initialize component map for new entity
-    for (size_t i = 0; i < 2; i++) {  // 2 is number of component types (SPRITE and POSITION)
+    for (size_t i = 0; i < COMPONENT_TYPE_COUNT; i++) { 
         p_componentManagerPtr->componentMaps[entityId].componentIds[i] = -1;
     }
 
     return entityId;
+}
+
+bool is_entity_clicked(PositionComponent* p_positionComponent, int p_mouseX, int p_mouseY) {
+    // Assuming the entity is represented by a rectangle with a fixed width and height
+    int entityWidth = 50;  // Example width
+    int entityHeight = 50; // Example height
+
+    // Check if the mouse click is within the entity's bounds
+    if (p_mouseX >= p_positionComponent->positionX && p_mouseX <= p_positionComponent->positionX + entityWidth &&
+        p_mouseY >= p_positionComponent->positionY && p_mouseY <= p_positionComponent->positionY + entityHeight) {
+        return true;
+    }
+
+    return false;
 }

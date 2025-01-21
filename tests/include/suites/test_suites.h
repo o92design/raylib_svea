@@ -20,4 +20,7 @@ void test_component_memory_management(void);
 // Game phase tests
 void test_phase_transitions(void);
 
+// Clickable component tests
+void test_clickable_component(void);
+
 #endif // TEST_SUITES_H
