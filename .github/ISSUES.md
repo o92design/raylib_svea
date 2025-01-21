@@ -37,19 +37,24 @@ Implement mouse input handling for the Preparation Phase.
 
 ---
 
+## Closed Issues
+
 ### [Implement Basic Mouse Click Handling](https://github.com/o92design/raylib_svea/issues/5)
 **Description:**  
 Implement basic mouse click handling to register clicks and determine what the player is clicking on.
 
-**Progress:** In Progress
+**Progress:** Closed (Completed)
 
 **Acceptance Criteria:**
 - [x] Implement functionality to register mouse clicks.
 - [x] Determine if the player is clicking on an entity or a specific area of the screen.
 
----
+**Pull request:**
+### [[#19] Implement Basic Mouse Click Handling](https://github.com/o92design/raylib_svea/issues/19)
+***Description***
+This pull request introduces mouse input handling for the preparation phase of the game, including the addition of a clickable component and associated functionality. The most important changes include updating the issue progress, defining the clickable component, and implementing mouse click detection.
 
-## Closed Issues
+---
 
 ### [Implement Phase Transitions](https://github.com/o92design/raylib_svea/issues/4)
 **Description:**  
