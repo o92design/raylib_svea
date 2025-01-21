@@ -1,9 +1,6 @@
 # Build artifacts
 build/
 
-# Libraries
-lib/raylib-5.5/
-
 # VSCode settings
 .vscode/
 
