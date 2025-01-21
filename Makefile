@@ -1,7 +1,7 @@
 # Compiler and linker
 CC = gcc
 CFLAGS = -Wall -Wextra -g -Iinclude -Ilib -I$(TEST_DIR)
-LDFLAGS = -Llib -lraylib -lcunit
+LDFLAGS = -Llib -lraylib -lcunit -lGL -lm -lpthread -ldl -lrt -lX11
 
 # Include all libraries in lib/ directory, excluding .md files
 LIBS = $(filter-out %.md, $(wildcard lib/*))
