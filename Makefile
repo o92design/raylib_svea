@@ -68,6 +68,15 @@ $(OBJ_DIR)/Tests/%.o: $(TEST_SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+# CI build
+ci-build: CFLAGS += -O2 $(LIB_INCLUDES)
+ci-build: $(RELEASE_TARGET)
+
+# CI test
+ci-test: CFLAGS += -g $(LIB_INCLUDES)
+ci-test: $(TEST_TARGET)
+	./$(TEST_TARGET)
+
 # Clean build artifacts
 clean:
 	rm -rf $(OBJ_DIR) build/Debug build/Release build/Tests
@@ -80,4 +89,4 @@ run: $(DEBUG_TARGET)
 test: $(TEST_TARGET)
 	./$(TEST_TARGET)
 
-.PHONY: all clean run debug release tests test
+.PHONY: all clean run debug release tests test ci-build ci-test
