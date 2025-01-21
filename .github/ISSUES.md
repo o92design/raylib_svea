@@ -9,10 +9,10 @@ Implement the ability to transition between the different phases of the game (Pr
 **Progress:** In Progress
 
 **Acceptance Criteria:**
-- [ ] Implement the ability to transition from the Preparation Phase to the Battle Phase.
-- [ ] Implement the ability to transition from the Battle Phase to the Result Phase.
-- [ ] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
-- [ ] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
+- [x] Implement the ability to transition from the Preparation Phase to the Battle Phase.
+- [x] Implement the ability to transition from the Battle Phase to the Result Phase.
+- [x] Implement the ability to transition from the Result Phase to the Post-Battle Phase.
+- [x] Implement the ability to transition from the Post-Battle Phase to the Preparation Phase.
 
 ---
 
