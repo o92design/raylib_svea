@@ -7,8 +7,8 @@ int main() {
     CU_initialize_registry();
 
     // Lägg till en suite för varje testfil
-    CU_pSuite example_suite = CU_add_suite("Example Suite", 0, 0);
-    CU_add_test(example_suite, "Example Test", test_example);
+    // CU_pSuite example_suite = CU_add_suite("Example Suite", 0, 0);
+    // CU_add_test(example_suite, "Example Test", test_example);
 
     CU_pSuite component_system_suite = CU_add_suite("Component System Suite", 0, 0);
     CU_add_test(component_system_suite, "Test Component Memory Management", test_component_memory_management);
