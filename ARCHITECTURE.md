@@ -282,6 +282,7 @@ To ensure the reliability and correctness of the game, we use automated testing.
 3. **Continuous Integration (CI)**:
     - We use a CI service like [GitHub Actions](https://github.com/features/actions) to automatically run tests on every push and pull request.
     - The CI pipeline is configured to compile the code, run unit tests, and report the results.
+    - implemented via github workspace (21/1-25)
 
 4. **Code Coverage**:
     - We use tools like [gcov](https://gcc.gnu.org/onlinedocs/gcc/Gcov.html) to measure code coverage.
