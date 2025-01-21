@@ -1,0 +1,15 @@
+name: 'Setup Build Dependencies'
+description: 'Install common build dependencies'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Dependencies
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          build-essential \
+          libcunit1-dev \
+          libgl1-mesa-dev \
+          libx11-dev

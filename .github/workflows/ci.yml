@@ -2,52 +2,32 @@ name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential libcunit1-dev
-
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions/setup-dependencies
     - name: Build project
       run: make ci-build
 
   test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y build-essential libcunit1-dev
-
+    - uses: actions/checkout@v2
+    - uses: ./.github/actions/setup-dependencies
     - name: Run tests
       run: make ci-test
 
   lint:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up dependencies
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
       run: sudo apt-get install -y clang-tidy
-
     - name: Lint code
       run: clang-tidy src/**/*.c include/**/*.h -- -Iinclude -Ilib
