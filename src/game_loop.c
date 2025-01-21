@@ -7,26 +7,28 @@
 #include "systems/sprite_loader_system.h"
 #include "systems/entity_component_system.h"
 
+#include "log_system.h"
+
 // Add to struct or global state
 static GAME_PHASE currentPhase = PHASE_PREPARATION;
 
 bool is_preparation_complete(void) {
-    fprintf(stdout, "Preparation complete\n");
+    log_info("Preparation complete\n");
     return true;
 }
 
 bool is_battle_complete(void) {
-    fprintf(stdout, "Battle complete\n");
+    log_info("Battle complete\n");
     return true;
 }
 
 bool is_result_complete(void) {
-    fprintf(stdout, "Result complete\n");
+    log_info("Result complete\n");
     return true;
 }
 
 bool is_post_battle_complete(void) {
-    fprintf(stdout, "Post battle complete\n");
+    log_info("Post battle complete\n");
     return true;
 }
 
@@ -34,25 +36,25 @@ void handle_phase_transition(void) {
     switch(currentPhase) {
         case PHASE_PREPARATION:
             if (is_preparation_complete()) {
-                fprintf(stdout, "Switching to battle phase\n");
+                log_info("Switching to battle phase\n");
                 currentPhase = PHASE_BATTLE;
             }
             break;
         case PHASE_BATTLE:
             if (is_battle_complete()) {
-                fprintf(stdout, "Switching to result phase\n");
+                log_info("Switching to result phase\n");
                 currentPhase = PHASE_RESULT;
             }
             break;
         case PHASE_RESULT:
             if (is_result_complete()) {
-                fprintf(stdout, "Switching to post battle phase\n");
+                log_info("Switching to post battle phase\n");
                 currentPhase = PHASE_POST_BATTLE;
             }
             break;
         case PHASE_POST_BATTLE:
             if (is_post_battle_complete()) {
-                fprintf(stdout, "Switching to preparation phase\n");
+                log_info("Switching to preparation phase\n");
                 currentPhase = PHASE_PREPARATION;
             }
             break;

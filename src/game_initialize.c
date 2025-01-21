@@ -3,11 +3,13 @@
 #include "systems/sprite_loader_system.h"
 #include <stdio.h>
 
+#include "log_system.h"
+
 int initialize_game(void) {
     // Initialize Raylib
     InitWindow(800, 600, "Svea Rike 2 Clone");
     if (!IsWindowReady()) {
-        fprintf(stderr, "Error: Could not initialize window.\n");
+        log_error("Error: Could not initialize window.\n");
         return -1;
     }
 
@@ -18,7 +20,7 @@ int initialize_game(void) {
 int cleanup_game(void) {
     // Verify window state
     if (!IsWindowReady()) {
-        fprintf(stderr, "Warning: Window already closed\n");
+        log_error("Warning: Window already closed\n");
         return 0;
     }
 

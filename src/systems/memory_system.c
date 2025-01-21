@@ -3,10 +3,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "log_system.h"
+
 MemoryManager* create_memory_manager(size_t p_initial_pool_count) {
     MemoryManager* managerPtr = malloc(sizeof(MemoryManager));
     if (!managerPtr) {
-        fprintf(stderr, "Failed to allocate memory p_managerPtr\n");
+        log_error("Failed to allocate memory p_managerPtr\n");
         return NULL;
     }
 
@@ -19,7 +21,7 @@ MemoryManager* create_memory_manager(size_t p_initial_pool_count) {
         free(managerPtr->pool_sizes);
         free(managerPtr->element_sizes);
         free(managerPtr);
-        fprintf(stderr, "Failed to allocate memory p_managerPtr arrays\n");
+        log_error("Failed to allocate memory p_managerPtr arrays\n");
         return NULL;
     }
 
