@@ -26,10 +26,10 @@ int cleanup_game(void) {
 
     // Wait for any pending GPU operations
     EndDrawing();  // Add this line to ensure no pending draw operations
-    
+
     // Finally close window
     CloseWindow();
-    
+
     printf("Debug: Window cleanup complete\n");
     return 0;
 }

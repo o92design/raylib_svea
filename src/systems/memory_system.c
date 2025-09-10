@@ -15,7 +15,7 @@ MemoryManager* create_memory_manager(size_t p_initial_pool_count) {
     managerPtr->pools = malloc(p_initial_pool_count * sizeof(void*));
     managerPtr->pool_sizes = malloc(p_initial_pool_count * sizeof(size_t));
     managerPtr->element_sizes = malloc(p_initial_pool_count * sizeof(size_t));
-    
+
     if (!managerPtr->pools || !managerPtr->pool_sizes || !managerPtr->element_sizes) {
         free(managerPtr->pools);
         free(managerPtr->pool_sizes);
@@ -26,7 +26,7 @@ MemoryManager* create_memory_manager(size_t p_initial_pool_count) {
     }
 
     managerPtr->type_count = p_initial_pool_count;
-    
+
     // Initialize arrays
     for (size_t i = 0; i < p_initial_pool_count; i++) {
         managerPtr->pools[i] = NULL;
@@ -85,7 +85,7 @@ void* allocate_component(MemoryManager* p_managerPtr, COMPONENT_TYPE p_type) {
     size_t current_size = p_managerPtr->pool_sizes[p_type];
     if (current_size >= INITIAL_POOL_SIZE) {
         size_t new_capacity = INITIAL_POOL_SIZE * 2;
-        void* new_pool = realloc(p_managerPtr->pools[p_type], 
+        void* new_pool = realloc(p_managerPtr->pools[p_type],
                                 new_capacity * p_managerPtr->element_sizes[p_type]);
         if (!new_pool) {
             return NULL;

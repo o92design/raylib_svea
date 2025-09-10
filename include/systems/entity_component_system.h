@@ -8,17 +8,17 @@ EntityComponentManager* create_component_manager(void);
 void destroy_component_manager(EntityComponentManager** p_componentManagerPtr);
 ENTITY_ID create_entity(EntityComponentManager* p_componentManagerPtr);
 
-COMPONENT_ID add_sprite_component(EntityComponentManager* p_componentManagerPtr, 
+COMPONENT_ID add_sprite_component(EntityComponentManager* p_componentManagerPtr,
                                 SpriteComponent p_spriteComponent);
 
-COMPONENT_ID add_position_component(EntityComponentManager* p_componentManagerPtr, 
+COMPONENT_ID add_position_component(EntityComponentManager* p_componentManagerPtr,
                                   PositionComponent p_positionComponent);
 
-COMPONENT_ID add_clickable_component(EntityComponentManager* p_componentManagerPtr, 
+COMPONENT_ID add_clickable_component(EntityComponentManager* p_componentManagerPtr,
                                    ClickableComponent p_clickableComponent);
 
-COMPONENT_ID retrieve_entity_component(EntityComponentManager* p_componentManagerPtr, 
-                                     size_t p_entityId, 
+COMPONENT_ID retrieve_entity_component(EntityComponentManager* p_componentManagerPtr,
+                                     size_t p_entityId,
                                      COMPONENT_TYPE p_type);
 
 

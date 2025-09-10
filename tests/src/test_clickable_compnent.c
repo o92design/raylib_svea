@@ -31,8 +31,8 @@ void test_clickable_component(void) {
     CU_ASSERT_EQUAL(retrievedId, clickableId);
 
     // Get and verify component data
-    ClickableComponent* clickableComp = (ClickableComponent*)get_component(manager, 
-                                                                         COMPONENT_TYPE_CLICKABLE, 
+    ClickableComponent* clickableComp = (ClickableComponent*)get_component(manager,
+                                                                         COMPONENT_TYPE_CLICKABLE,
                                                                          clickableId);  // Use clickableId instead of retrievedId
     CU_ASSERT_PTR_NOT_NULL_FATAL(clickableComp);
     CU_ASSERT_TRUE(clickableComp->isClickable);
@@ -44,16 +44,16 @@ void test_clickable_component(void) {
     manager->componentMaps[entityId].componentIds[COMPONENT_TYPE_POSITION] = posId;
 
     // Test click detection
-    PositionComponent* posComp = (PositionComponent*)get_component(manager, 
-                                                                 COMPONENT_TYPE_POSITION, 
+    PositionComponent* posComp = (PositionComponent*)get_component(manager,
+                                                                 COMPONENT_TYPE_POSITION,
                                                                  posId);
     CU_ASSERT_PTR_NOT_NULL(posComp);
-    
+
     // Test clicks at various positions
     CU_ASSERT_TRUE(is_entity_clicked(posComp, 100, 100));   // Direct hit
     CU_ASSERT_TRUE(is_entity_clicked(posComp, 120, 120));   // Within bounds
     CU_ASSERT_FALSE(is_entity_clicked(posComp, 200, 200));  // Outside bounds
-    
+
     // Cleanup
     destroy_component_manager(&manager);
 }

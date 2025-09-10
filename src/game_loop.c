@@ -107,7 +107,7 @@ int run_game_loop(void) {
     bool shouldSwitch = true;
     while (!WindowShouldClose() && !shouldClose) {
         if(shouldSwitch) handle_phase_transition();
-        
+
         // Render based on current phase
         switch(currentPhase) {
             case PHASE_PREPARATION:

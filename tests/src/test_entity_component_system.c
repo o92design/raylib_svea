@@ -9,7 +9,7 @@
 void test_create_component_manager(void) {
     EntityComponentManager* manager = create_component_manager();
     CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
-    
+
     // Test memory manager creation
     CU_ASSERT_PTR_NOT_NULL(manager->memoryManager);
     CU_ASSERT_EQUAL(manager->memoryManager->type_count, 2); // SPRITE and POSITION
@@ -23,7 +23,7 @@ void test_create_component_manager(void) {
 void test_add_components(void) {
     // Initialize game for sprite loading
     CU_ASSERT(initialize_game() == 0);
-    
+
     EntityComponentManager* manager = create_component_manager();
     CU_ASSERT_PTR_NOT_NULL_FATAL(manager);
 
@@ -40,12 +40,12 @@ void test_add_components(void) {
     // Verify components were added correctly
     void* spritePtr = get_component(manager, COMPONENT_TYPE_SPRITE, spriteId);
     CU_ASSERT_PTR_NOT_NULL(spritePtr);
-    
+
     void* posPtr = get_component(manager, COMPONENT_TYPE_POSITION, posId);
     CU_ASSERT_PTR_NOT_NULL(posPtr);
 
     cleanup_game();
-    
+
     destroy_component_manager(&manager);
 }
 
@@ -58,7 +58,7 @@ void test_component_memory_management(void) {
         PositionComponent pos = {-1, i * 10, i * 10};
         COMPONENT_ID id = add_position_component(manager, pos);
         CU_ASSERT_NOT_EQUAL(id, -1);
-        
+
         // Verify component data
         void* comp = get_component(manager, COMPONENT_TYPE_POSITION, id);
         CU_ASSERT_PTR_NOT_NULL(comp);
@@ -101,7 +101,7 @@ void test_component_retrieval(void) {
 
     void* component = get_component(manager, COMPONENT_TYPE_POSITION, retrievedId);
     CU_ASSERT_PTR_NOT_NULL(component);
-    
+
     PositionComponent* posComp = (PositionComponent*)component;
     CU_ASSERT_EQUAL(posComp->positionX, 100);
     CU_ASSERT_EQUAL(posComp->positionY, 200);

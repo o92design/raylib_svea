@@ -4,9 +4,9 @@
 #include <stdio.h>
 #include <string.h>
 
-COMPONENT_ID add_component(EntityComponentManager* p_manager, 
+COMPONENT_ID add_component(EntityComponentManager* p_manager,
                          COMPONENT_TYPE p_type,
-                         void* p_data, 
+                         void* p_data,
                          size_t p_size) {
     if (!p_manager || !p_data) {
         return -1;

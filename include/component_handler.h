@@ -12,9 +12,9 @@ typedef struct {
 } ComponentData;
 
 // Function declarations
-COMPONENT_ID add_component(EntityComponentManager* manager, 
+COMPONENT_ID add_component(EntityComponentManager* manager,
                          COMPONENT_TYPE type,
-                         void* data, 
+                         void* data,
                          size_t size);
 
 void* get_component(EntityComponentManager* manager,
